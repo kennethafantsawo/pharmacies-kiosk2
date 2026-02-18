@@ -21,9 +21,15 @@ const Clock = ({ currentTime }: ClockProps) => {
     );
   }
 
-  const formattedDate = format(currentTime, 'EEEE d MMMM yyyy', { locale: fr });
-  const formattedTime = format(currentTime, 'HH:mm:ss');
-  const weekNumber = getWeek(currentTime, { locale: fr });
+  // To display GMT time, date-fns needs to be "tricked" as it formats in local time.
+  // We create a new Date object adjusted by the timezone offset.
+  // This makes date-fns format the date as if it were in GMT.
+  const userTimezoneOffset = currentTime.getTimezoneOffset() * 60000;
+  const gmtEquivalentDate = new Date(currentTime.getTime() + userTimezoneOffset);
+
+  const formattedDate = format(gmtEquivalentDate, 'EEEE d MMMM yyyy', { locale: fr });
+  const formattedTime = format(gmtEquivalentDate, 'HH:mm:ss');
+  const weekNumber = getWeek(gmtEquivalentDate, { locale: fr });
 
   return (
     <div className="text-right">
