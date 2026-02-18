@@ -35,9 +35,9 @@ HEADERS = {
 }
 
 # Patterns Regex
-PHONE_PATTERN = re.compile(r'\+228\s*\d{2}\s*\d{2}\s*\d{2}\s*\d{2}|\+228\d{8}|\d{8}')
+PHONE_PATTERN = re.compile(r'(?:\+228)?\s*(?:\d{2}\s*){4}|\d{8}')
 INSURANCE_PATTERN = re.compile(r'\b(AMU|INAM|CNSS|SANLAM|GRAS\s*SAVOYE|GTA-C2|AGCA|SUNU|TRANSVIE|FIDELIA|NSIA|OLEA|MSH|ASCOMA|GCA|LORICA|LA\s*CITOYENNE)\b', re.IGNORECASE)
-WEEK_PATTERN = re.compile(r'SEMAINE\s+DU\s+(\d{1,2})\s+(?:AU|A)\s+(\d{1,2})\s+(\w+)\s+(\d{4})', re.IGNORECASE)
+WEEK_PATTERN = re.compile(r'SEMAINE\s+DU\s+(\d{1,2})\s+([A-ZÀ-Ü]+)\s+(?:AU|À|A)\s+(\d{1,2})\s+([A-ZÀ-Ü]+)\s+(\d{4})', re.IGNORECASE)
 
 # ===== LOGGING =====
 def setup_logging():
@@ -58,37 +58,27 @@ logger = setup_logging()
 # ===== FONCTIONS UTILITAIRES =====
 
 def normalize_phone(phone: str) -> tuple:
-    """Normalise un numéro de téléphone"""
+    """Normalise un numéro de téléphone togolais."""
     if not phone:
         return "", ""
     
-    # Nettoyer
-    clean = re.sub(r'\s+', '', phone)
+    # Nettoyer les caractères non-numériques
+    compact_num = re.sub(r'\D', '', phone)
     
-    # Ajouter +228 si manquant
-    if clean.startswith('228'):
-        clean = '+' + clean
-    elif clean.startswith('00228'):
-        clean = '+' + clean[3:]
-    elif len(clean) == 8 and clean.isdigit():
-        clean = '+228' + clean
+    # Gérer les différents formats
+    if compact_num.startswith('228') and len(compact_num) == 11:
+        compact_num = compact_num[3:]
     
-    # Format compact
-    compact = re.sub(r'\D', '', clean.replace('+', ''))
-    if len(compact) == 11 and compact.startswith('228'):  # 228 + 8 chiffres
-        compact = '+228' + compact[3:]
-    elif len(compact) == 8:
-        compact = '+228' + compact
-    
+    if len(compact_num) != 8:
+        return phone, phone # Pas un format togolais standard
+
+    # Format compact standardisé
+    compact_format = f"+228{compact_num}"
+
     # Format lisible
-    if len(compact) == 11 and compact.startswith('228'):
-        formatted = f"+228 {compact[3:5]} {compact[5:7]} {compact[7:9]} {compact[9:11]}"
-    elif len(compact) == 8:
-         formatted = f"+228 {compact[0:2]} {compact[2:4]} {compact[4:6]} {compact[6:8]}"
-    else:
-        formatted = phone
+    formatted = f"+228 {compact_num[0:2]} {compact_num[2:4]} {compact_num[4:6]} {compact_num[6:8]}"
     
-    return compact, formatted
+    return compact_format, formatted
 
 def extract_insurances(text: str) -> List[str]:
     """Extrait la liste des assurances depuis un texte"""
@@ -114,38 +104,41 @@ def month_fr_to_num(month: str) -> int:
     }
     return months.get(month.lower().strip(), 1)
 
-def extract_week_dates(html: str) -> Dict[str, str]:
-    """Extrait les dates de la semaine depuis le HTML"""
-    match = WEEK_PATTERN.search(html)
+def extract_week_dates(text: str) -> Dict[str, str]:
+    """Extrait les dates de la semaine depuis le texte"""
+    match = WEEK_PATTERN.search(text.upper())
     if match:
-        start_day, end_day, month, year = match.groups()
-        month_num = month_fr_to_num(month)
+        start_day, start_month_str, end_day, end_month_str, year = match.groups()
         
-        start_date = datetime(int(year), month_num, int(start_day))
+        start_month_num = month_fr_to_num(start_month_str)
+        end_month_num = month_fr_to_num(end_month_str)
         
-        # Handle month change
-        end_date_day = int(end_day)
-        if end_date_day < int(start_day):
-            # Assumes the end date is in the next month
-            next_month = month_num + 1 if month_num < 12 else 1
-            next_year = int(year) if month_num < 12 else int(year) + 1
-            end_date = datetime(next_year, next_month, end_date_day)
-        else:
-            end_date = datetime(int(year), month_num, end_date_day)
+        start_year = int(year)
+        end_year = start_year
         
-        return {
-            "week_start": start_date.strftime("%Y-%m-%d"),
-            "week_end": end_date.strftime("%Y-%m-%d")
-        }
-    
-    # Fallback : semaine actuelle
+        if end_month_num < start_month_num:
+            end_year = start_year + 1
+
+        try:
+            start_date = datetime(start_year, start_month_num, int(start_day))
+            end_date = datetime(end_year, end_month_num, int(end_day))
+            
+            return {
+                "week_start": start_date.strftime("%Y-%m-%d"),
+                "week_end": end_date.strftime("%Y-%m-%d")
+            }
+        except ValueError as e:
+            logger.error(f"Date invalide: {e}")
+
+    logger.warning("Impossible d'extraire la date de la semaine via regex. Utilisation de la semaine actuelle comme fallback.")
     today = datetime.now()
-    monday = today - timedelta(days=today.weekday())
-    sunday = monday + timedelta(days=6)
+    start_of_week = today - timedelta(days=today.weekday())
+    end_of_week = start_of_week + timedelta(days=6)
     return {
-        "week_start": monday.strftime("%Y-%m-%d"),
-        "week_end": sunday.strftime("%Y-%m-%d")
+        "week_start": start_of_week.strftime('%Y-%m-%d'),
+        "week_end": end_of_week.strftime('%Y-%m-%d'),
     }
+
 
 def sanitize_id(text: str) -> str:
     """Crée un ID safe depuis un texte"""
@@ -163,29 +156,40 @@ def parse_pharmacy_element(element, zone_info: Dict) -> Optional[Dict]:
     try:
         text_content = element.get_text(" ", strip=True)
         
-        # Nom
-        name_match = re.search(r'(Pharmacie\s+[\w\s\'-À-ÿ]+)', text_content, re.IGNORECASE)
-        name = name_match.group(1).strip() if name_match else None
+        if ':' not in text_content:
+             return None
         
-        if not name: return None
+        parts = text_content.split(':', 1)
+        name = parts[0].strip()
         
-        # Clean name
+        if 'pharmacie' not in name.lower():
+            return None
+
+        details = parts[1].strip()
         name = re.sub(r'\s+', ' ', name).title()
         
-        # Téléphone
+        address = details
+        phone_numbers_raw = []
+        
+        if 'tél' in details.lower():
+            address_parts = re.split(r'Tél\s*\.?:', details, maxsplit=1)
+            address = address_parts[0].strip(' ,-')
+            if len(address_parts) > 1:
+                phone_part = address_parts[1]
+                phone_numbers_raw = PHONE_PATTERN.findall(phone_part)
+        
         phone, phone_formatted = "", ""
-        phone_match = PHONE_PATTERN.search(text_content)
-        if phone_match:
-            phone, phone_formatted = normalize_phone(phone_match.group(0))
-        
-        # Adresse
-        # Retirer le nom et le tel du texte pour obtenir l'adresse
-        address = text_content.replace(name, '').strip()
-        if phone_match:
-            address = address.replace(phone_match.group(0), '').strip()
-        address = re.sub(r'(\s*,\s*)+', ', ', address).strip(' ,')
-        
-        # Assurances
+        all_phones_formatted = []
+        if phone_numbers_raw:
+            for i, p_raw in enumerate(phone_numbers_raw):
+                p_compact, p_formatted = normalize_phone(p_raw)
+                if i == 0:
+                    phone = p_compact
+                    phone_formatted = p_formatted
+                all_phones_formatted.append(p_formatted)
+
+        phone_formatted_full = " / ".join(all_phones_formatted)
+
         insurances = extract_insurances(text_content)
         
         return {
@@ -193,10 +197,10 @@ def parse_pharmacy_element(element, zone_info: Dict) -> Optional[Dict]:
             "name": name,
             "address": address or "Adresse non disponible",
             "phone": phone,
-            "phone_formatted": phone_formatted or phone,
+            "phone_formatted": phone_formatted_full or phone_formatted,
             "insurances": insurances,
             "coordinates": {"latitude": None, "longitude": None},
-            "is_24h": "24h" in text_content.lower() or "24/7" in text_content.lower()
+            "is_24h": "24h" in name.lower() or "24/7" in name.lower()
         }
     except Exception as e:
         logger.warning(f"Erreur parsing pharmacie: {e} | Contenu: {element.get_text()[:100]}")
@@ -205,34 +209,33 @@ def parse_pharmacy_element(element, zone_info: Dict) -> Optional[Dict]:
 def parse_zone_header(zone_text: str) -> Dict:
     """Parse l'en-tête d'une zone"""
     zone_text = zone_text.strip().upper()
-    
-    # Pattern: "ZONE X1 : NOM" ou villes intérieures
-    match = re.match(r'^(?:ZONE\s*)?([A-Z]\d*|[A-ZÀ-Ü]+)\s*[:\-]?\s*(.*)$', zone_text)
-    
-    if match:
-        zone_code = match.group(1).strip()
-        zone_name = match.group(2).strip() or zone_code.title()
-        
-        city_map = {
-            'KARA': 'Kara', 'DAPAONG': 'Dapaong', 'SOKODE': 'Sokodé', 'SOKODÉ': 'Sokodé',
-            'KPALIME': 'Kpalimé', 'KPALIMÉ': 'Kpalimé', 'ATAKPAME': 'Atakpamé', 'ATAKPAMÉ': 'Atakpamé'
-        }
-        
-        city = city_map.get(zone_code, "Lomé")
-        zone_id = zone_code
+    zone_text = re.sub(r'^ZONE\s+', 'ZONE ', zone_text)
 
-        return {
-            "zone_id": zone_id,
-            "zone_code": f"ZONE {zone_code}" if city == "Lomé" else zone_code,
-            "zone_name": zone_name,
-            "city": city,
-            "pharmacies": []
-        }
-    
-    return {
-        "zone_id": "UNKNOWN", "zone_code": zone_text, "zone_name": zone_text,
-        "city": "Unknown", "pharmacies": []
+    city_map = {
+        'KARA': 'Kara', 'DAPAONG': 'Dapaong', 'SOKODE': 'Sokodé', 'SOKODÉ': 'Sokodé',
+        'KPALIME': 'Kpalimé', 'KPALIMÉ': 'Kpalimé', 'ATAKPAME': 'Atakpamé', 'ATAKPAMÉ': 'Atakpamé',
+        'BASSAR': 'Bassar', 'MANGO': 'Mango', 'TSEVIE': 'Tsévié', 'TSÉVIÉ': 'Tsévié'
     }
+
+    # Chercher une ville connue
+    for city_key, city_name in city_map.items():
+        if city_key in zone_text:
+            return { "zone_id": city_key, "zone_code": city_key.title(), "zone_name": city_name, "city": city_name, "pharmacies": [] }
+
+    # Si c'est une zone de Lomé
+    if zone_text.startswith("ZONE "):
+        parts = zone_text.split(':', 1)
+        zone_code_part = parts[0].strip()
+        zone_name_part = parts[1].strip() if len(parts) > 1 else ""
+        zone_id = zone_code_part.replace('ZONE ', '').strip()
+        return { "zone_id": zone_id, "zone_code": zone_code_part, "zone_name": zone_name_part or zone_id, "city": "Lomé", "pharmacies": [] }
+    
+    # Si c'est juste "LOME"
+    if "LOME" in zone_text:
+        return { "zone_id": "LOME", "zone_code": "Lomé", "zone_name": "Lomé", "city": "Lomé", "pharmacies": [] }
+
+    return { "zone_id": sanitize_id(zone_text), "zone_code": zone_text, "zone_name": zone_text.title(), "city": "Unknown", "pharmacies": [] }
+
 
 # ===== SCRAPPING PRINCIPAL =====
 
@@ -256,8 +259,13 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
     
     soup = BeautifulSoup(html, 'html.parser')
     
+    content_area = soup.select_one('.entry-content')
+    if not content_area:
+        logger.error("Impossible de trouver le conteneur de contenu '.entry-content'. La structure du site a peut-être changé.")
+        return None
+
     # Extraire les dates
-    dates = extract_week_dates(soup.get_text())
+    dates = extract_week_dates(content_area.get_text())
     
     result = {
         "metadata": {
@@ -268,42 +276,26 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
     }
     
     all_pharmacies = []
-    
-    # Chercher les sections/divs qui contiennent les infos de zone
-    zone_containers = soup.select('div.p-4, div.card, section.on-call-section, article.pharmacy-zone')
+    current_zone_info = None
 
-    if not zone_containers:
-        # Fallback si la structure est plus simple (ex: tout dans le body)
-        zone_containers = [soup.body]
+    for tag in content_area.find_all(['h3', 'h4', 'p']):
+        tag_text = tag.get_text(strip=True)
 
-    for container in zone_containers:
-        # Trouver les titres de zone (h2, h3, h4)
-        headers = container.find_all(['h2', 'h3', 'h4'], string=re.compile(r'ZONE|KARA|DAPAONG|SOKOD[É|E]|KPALIM[É|E]', re.I))
-
-        for i, header in enumerate(headers):
-            zone_info = parse_zone_header(header.get_text(strip=True))
+        if tag.name in ['h3', 'h4']:
+            # Ignorer les en-têtes non pertinents
+            if "INTERIEUR" in tag_text.upper() or "PAYS" in tag_text.upper():
+                current_zone_info = None # Reset zone for interior cities
+                continue
             
-            # Déterminer la portée du contenu de la zone
-            # On prend tous les éléments jusqu'au prochain header
-            content_end = headers[i+1] if i + 1 < len(headers) else None
-            
-            current_element = header.find_next_sibling()
-            pharmacy_elements = []
-            while current_element and current_element != content_end:
-                pharmacy_elements.append(current_element)
-                current_element = current_element.find_next_sibling()
-
-            # Parser les pharmacies dans le contenu
-            for elem in pharmacy_elements:
-                # Chercher des `p` ou `div` qui semblent être des pharmacies
-                possible_pharmacies = elem.find_all(['p', 'div']) if hasattr(elem, 'find_all') else [elem]
-                if not possible_pharmacies: possible_pharmacies = [elem]
-                
-                for p_elem in possible_pharmacies:
-                    if 'Pharmacie' in p_elem.get_text():
-                        pharm = parse_pharmacy_element(p_elem, zone_info)
-                        if pharm:
-                            all_pharmacies.append((zone_info, pharm))
+            potential_zone_info = parse_zone_header(tag_text)
+            # Accepter si c'est une ville connue ou une zone de Lomé
+            if potential_zone_info['city'] != 'Unknown' or potential_zone_info['city'] == 'Lomé':
+                 current_zone_info = potential_zone_info
+        
+        elif tag.name == 'p' and 'pharmacie' in tag_text.lower() and current_zone_info:
+            pharm = parse_pharmacy_element(tag, current_zone_info)
+            if pharm:
+                all_pharmacies.append((current_zone_info, pharm))
 
     # Regrouper les pharmacies par zone
     zones_dict = {}
@@ -313,11 +305,10 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
             zones_dict[zone_id] = zone_info
             zones_dict[zone_id]['pharmacies'] = []
 
-        # Éviter les doublons
         if not any(p['id'] == pharm['id'] for p in zones_dict[zone_id]['pharmacies']):
             zones_dict[zone_id]['pharmacies'].append(pharm)
 
-    result['zones'] = list(zones_dict.values())
+    result['zones'] = [zone for zone in zones_dict.values() if zone['pharmacies']]
     
     # Calculer les stats par ville
     for zone in result['zones']:
@@ -325,7 +316,8 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
         if city_name not in result['cities']:
             result['cities'][city_name] = {"name": city_name, "zones": [], "pharmacy_count": 0}
         
-        result['cities'][city_name]['zones'].append(zone['zone_id'])
+        if zone['zone_id'] not in result['cities'][city_name]['zones']:
+            result['cities'][city_name]['zones'].append(zone['zone_id'])
         result['cities'][city_name]['pharmacy_count'] += len(zone['pharmacies'])
 
     result['cities'] = list(result['cities'].values())
