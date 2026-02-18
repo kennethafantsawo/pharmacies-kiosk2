@@ -19,7 +19,7 @@ const Header = ({ weekStart, weekEnd, status, lastUpdated, currentTime }: Header
   }
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-10 p-6 bg-background/90 backdrop-blur-sm border-b border-border">
+    <header className="absolute top-0 left-0 right-0 z-20 p-6 bg-card/90 backdrop-blur-sm border-b border-border shadow-lg">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-4xl font-black text-primary drop-shadow-sm">
