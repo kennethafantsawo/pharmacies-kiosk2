@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { AppConfig } from '@/lib/types';
 import type { PharmacyData } from '@/lib/types';
 import usePharmacyData from '@/hooks/usePharmacyData';
@@ -15,14 +15,29 @@ interface KioskClientProps {
   initialData: PharmacyData | null;
   backupData: PharmacyData | null;
   config: AppConfig;
+  demoDate?: string;
 }
 
-const KioskClient = ({ initialData, backupData, config }: KioskClientProps) => {
+const KioskClient = ({ initialData, backupData, config, demoDate }: KioskClientProps) => {
   const { data, status, lastUpdated } = usePharmacyData({
     initialData,
     backupData,
     refreshInterval: config.dataRefreshIntervalMinutes * 60 * 1000,
   });
+
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const initialDate = demoDate ? new Date(demoDate) : new Date();
+    setCurrentTime(initialDate);
+
+    const timer = setInterval(() => {
+      setCurrentTime(prevTime => prevTime ? new Date(prevTime.getTime() + 1000) : new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [demoDate]);
+
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   useAutoScroll({
@@ -48,6 +63,7 @@ const KioskClient = ({ initialData, backupData, config }: KioskClientProps) => {
         weekEnd={data?.metadata.week_end}
         status={status}
         lastUpdated={lastUpdated}
+        currentTime={currentTime}
       />
       
       <main 

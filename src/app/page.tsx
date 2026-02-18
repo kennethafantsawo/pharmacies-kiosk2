@@ -6,6 +6,7 @@ import type { PharmacyData } from '@/lib/types';
 import config from '../../config.json';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal } from 'lucide-react';
+import { startOfWeek, endOfWeek } from 'date-fns';
 
 async function getInitialData(filePath: string): Promise<PharmacyData | null> {
   try {
@@ -57,17 +58,21 @@ export default async function Home() {
     );
   }
 
-  // Pour la démo, on ajuste la date de la semaine au 18 Février 2026
-  const demoWeekStart = "2026-02-16";
-  const demoWeekEnd = "2026-02-22";
+  // Pour la démo, on ajuste la date au 18 Février 2026
+  const demoDate = new Date('2026-02-18T10:30:00Z');
+  const demoWeekStart = startOfWeek(demoDate, { weekStartsOn: 1 }).toISOString().split('T')[0];
+  const demoWeekEnd = endOfWeek(demoDate, { weekStartsOn: 1 }).toISOString().split('T')[0];
+  const demoLastUpdated = new Date(demoDate.getTime() - (5 * 60 * 1000)).toISOString(); // 5 minutes before demo date
 
   if (initialData) {
     initialData.metadata.week_start = demoWeekStart;
     initialData.metadata.week_end = demoWeekEnd;
+    initialData.metadata.last_updated = demoLastUpdated;
   }
   if (backupData) {
     backupData.metadata.week_start = demoWeekStart;
     backupData.metadata.week_end = demoWeekEnd;
+    backupData.metadata.last_updated = demoLastUpdated;
   }
 
 
@@ -78,6 +83,7 @@ export default async function Home() {
           initialData={initialData} 
           backupData={backupData} 
           config={config} 
+          demoDate={demoDate.toISOString()}
         />
       </Suspense>
     </div>

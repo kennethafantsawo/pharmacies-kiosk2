@@ -7,9 +7,10 @@ interface HeaderProps {
   weekEnd?: string;
   status: DataStatus;
   lastUpdated?: string;
+  currentTime: Date | null;
 }
 
-const Header = ({ weekStart, weekEnd, status, lastUpdated }: HeaderProps) => {
+const Header = ({ weekStart, weekEnd, status, lastUpdated, currentTime }: HeaderProps) => {
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
@@ -27,9 +28,9 @@ const Header = ({ weekStart, weekEnd, status, lastUpdated }: HeaderProps) => {
           <p className="text-2xl font-bold text-foreground">
             {weekStart && weekEnd ? `Du ${formatDate(weekStart)} au ${formatDate(weekEnd)}` : 'Chargement de la semaine...'}
           </p>
-          <StatusIndicator status={status} lastUpdated={lastUpdated} />
+          <StatusIndicator status={status} lastUpdated={lastUpdated} currentTime={currentTime} />
         </div>
-        <Clock />
+        <Clock currentTime={currentTime} />
       </div>
     </header>
   );

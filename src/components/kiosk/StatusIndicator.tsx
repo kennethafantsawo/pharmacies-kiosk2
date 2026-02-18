@@ -1,5 +1,8 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import type { DataStatus } from '@/hooks/usePharmacyData';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Wifi, WifiOff, Loader, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -7,9 +10,23 @@ import { Badge } from '@/components/ui/badge';
 interface StatusIndicatorProps {
   status: DataStatus;
   lastUpdated?: string;
+  currentTime: Date | null;
 }
 
-const StatusIndicator = ({ status, lastUpdated }: StatusIndicatorProps) => {
+const StatusIndicator = ({ status, lastUpdated, currentTime }: StatusIndicatorProps) => {
+  const [timeAgo, setTimeAgo] = useState('');
+
+  useEffect(() => {
+    if (!lastUpdated || !currentTime) {
+      setTimeAgo('');
+      return;
+    }
+
+    const lastUpdatedDate = new Date(lastUpdated);
+    setTimeAgo(formatDistance(lastUpdatedDate, currentTime, { addSuffix: true, locale: fr }));
+
+  }, [lastUpdated, currentTime]);
+
   const getStatusContent = () => {
     switch (status) {
       case 'loading':
@@ -44,14 +61,10 @@ const StatusIndicator = ({ status, lastUpdated }: StatusIndicatorProps) => {
     }
   };
 
-  const timeAgo = lastUpdated 
-    ? formatDistanceToNow(new Date(lastUpdated), { addSuffix: true, locale: fr })
-    : '';
-
   return (
     <div className="flex items-center gap-4 mt-3 text-muted-foreground text-lg">
       {getStatusContent()}
-      {lastUpdated && (
+      {timeAgo && (
         <span>Dernière vérification: {timeAgo}</span>
       )}
     </div>

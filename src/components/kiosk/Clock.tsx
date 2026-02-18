@@ -1,23 +1,13 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import { format, getWeek } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
-const Clock = () => {
-  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+interface ClockProps {
+  currentTime: Date | null;
+}
 
-  useEffect(() => {
-    // Set initial time on client to avoid hydration mismatch
-    setCurrentTime(new Date());
-
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+const Clock = ({ currentTime }: ClockProps) => {
   // Render placeholders on the server and during initial client render
   if (!currentTime) {
     return (
