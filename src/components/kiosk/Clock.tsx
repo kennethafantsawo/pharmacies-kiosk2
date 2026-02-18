@@ -8,7 +8,9 @@ const Clock = () => {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    // Set initial time on client to avoid hydration mismatch
     setCurrentTime(new Date());
+
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);

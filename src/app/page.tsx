@@ -57,6 +57,20 @@ export default async function Home() {
     );
   }
 
+  // Pour la démo, on ajuste la date de la semaine au 18 Février 2026
+  const demoWeekStart = "2026-02-16";
+  const demoWeekEnd = "2026-02-22";
+
+  if (initialData) {
+    initialData.metadata.week_start = demoWeekStart;
+    initialData.metadata.week_end = demoWeekEnd;
+  }
+  if (backupData) {
+    backupData.metadata.week_start = demoWeekStart;
+    backupData.metadata.week_end = demoWeekEnd;
+  }
+
+
   return (
     <div className="w-full h-screen bg-background text-foreground overflow-hidden">
       <Suspense fallback={<LoadingFallback />}>
