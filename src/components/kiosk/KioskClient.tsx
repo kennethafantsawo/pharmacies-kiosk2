@@ -14,10 +14,9 @@ interface KioskClientProps {
   initialData: PharmacyData | null;
   backupData: PharmacyData | null;
   config: AppConfig;
-  demoDate?: string;
 }
 
-const KioskClient = ({ initialData, backupData, config, demoDate }: KioskClientProps) => {
+const KioskClient = ({ initialData, backupData, config }: KioskClientProps) => {
   const { data, status, lastUpdated } = usePharmacyData({
     initialData,
     backupData,
@@ -27,15 +26,17 @@ const KioskClient = ({ initialData, backupData, config, demoDate }: KioskClientP
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    const initialDate = demoDate ? new Date(demoDate) : new Date();
-    setCurrentTime(initialDate);
+    // Set initial time on client mount to avoid hydration mismatch
+    setCurrentTime(new Date());
 
     const timer = setInterval(() => {
-      setCurrentTime(prevTime => prevTime ? new Date(prevTime.getTime() + 1000) : new Date());
+      // Using new Date() directly is simpler and resyncs the clock every second,
+      // preventing potential drift from interval inaccuracies.
+      setCurrentTime(new Date());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [demoDate]);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);

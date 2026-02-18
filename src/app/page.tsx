@@ -6,8 +6,6 @@ import type { PharmacyData, AppConfig } from '@/lib/types';
 // Cette page est rendue côté serveur (SSR)
 export const revalidate = 0; // Pas de cache, toujours frais
 
-const DEMO_DATE = "2026-02-18T10:00:00Z";
-
 async function loadJsonData(filePath: string): Promise<any | null> {
   try {
     const fullPath = path.join(process.cwd(), filePath);
@@ -44,7 +42,6 @@ export default async function KioskPage() {
             initialData={initialData as PharmacyData}
             backupData={backupData as PharmacyData}
             config={config as AppConfig}
-            demoDate={DEMO_DATE}
         />
     </div>
   );
