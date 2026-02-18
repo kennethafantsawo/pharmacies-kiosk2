@@ -19,13 +19,13 @@ const Header = ({ weekStart, weekEnd, status, lastUpdated, currentTime }: Header
   }
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-10 p-6 bg-background/80 backdrop-blur-sm border-b border-white/10">
+    <header className="absolute top-0 left-0 right-0 z-10 p-6 bg-background/90 backdrop-blur-sm border-b border-border">
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-5xl font-black text-primary drop-shadow-lg">
+          <h1 className="text-4xl font-black text-primary drop-shadow-sm">
             PHARMACIES DE GARDE
           </h1>
-          <p className="text-2xl font-bold text-foreground">
+          <p className="text-xl font-bold text-foreground">
             {weekStart && weekEnd ? `Du ${formatDate(weekStart)} au ${formatDate(weekEnd)}` : 'Chargement de la semaine...'}
           </p>
           <StatusIndicator status={status} lastUpdated={lastUpdated} currentTime={currentTime} />

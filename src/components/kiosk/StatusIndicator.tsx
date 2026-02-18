@@ -31,14 +31,14 @@ const StatusIndicator = ({ status, lastUpdated, currentTime }: StatusIndicatorPr
     switch (status) {
       case 'loading':
         return (
-          <Badge variant="secondary" className="text-lg bg-blue-500/20 text-blue-300 border-blue-400">
+          <Badge variant="outline" className="text-lg text-blue-600 border-blue-500/50 bg-blue-50">
             <Loader className="mr-2 h-4 w-4 animate-spin" />
             Mise à jour...
           </Badge>
         );
       case 'offline':
         return (
-          <Badge variant="destructive" className="text-lg bg-orange-500/20 text-orange-300 border-orange-400">
+          <Badge variant="outline" className="text-lg text-orange-600 border-orange-500/50 bg-orange-50">
             <WifiOff className="mr-2 h-4 w-4" />
             Mode hors-ligne
           </Badge>
@@ -51,7 +51,7 @@ const StatusIndicator = ({ status, lastUpdated, currentTime }: StatusIndicatorPr
         );
       case 'success':
         return (
-           <Badge variant="secondary" className="text-lg bg-green-500/20 text-green-300 border-green-400">
+           <Badge variant="outline" className="text-lg text-green-600 border-green-500/50 bg-green-50">
             <CheckCircle className="mr-2 h-4 w-4" />
             Données à jour
           </Badge>
@@ -62,7 +62,7 @@ const StatusIndicator = ({ status, lastUpdated, currentTime }: StatusIndicatorPr
   };
 
   return (
-    <div className="flex items-center gap-4 mt-3 text-muted-foreground text-lg">
+    <div className="flex items-center gap-4 mt-3 text-muted-foreground text-base">
       {getStatusContent()}
       {timeAgo && (
         <span>Dernière vérification: {timeAgo}</span>
