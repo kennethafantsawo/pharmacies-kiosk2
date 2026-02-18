@@ -1,21 +1,52 @@
+// types.ts
+
+export interface Coordinates {
+  latitude: number | null;
+  longitude: number | null;
+}
+
 export interface Pharmacy {
-  zone: string;
-  nom: string;
-  adresse: string;
-  telephone: string;
-  assurances: string[];
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  phone_formatted: string;
+  insurances: string[];
+  coordinates: Coordinates;
+  is_24h: boolean;
 }
 
-export interface PharmacyMetadata {
-  source: string;
-  periode: string;
-  extraction: string;
-  total_pharmacies: number;
-  total_zones: number;
-}
-
-export interface PharmaciesApiResponse {
-  metadata: PharmacyMetadata;
+export interface Zone {
+  zone_id: string;
+  zone_code: string;
+  zone_name: string;
+  city: string;
   pharmacies: Pharmacy[];
-  filtered_count?: number;
+}
+
+export interface City {
+    name: string;
+    zones: string[];
+    pharmacy_count: number;
+}
+
+export interface Metadata {
+  week_start: string;
+  week_end: string;
+  source_url: string;
+  last_updated: string;
+}
+
+export interface PharmacyData {
+  metadata: Metadata;
+  zones: Zone[];
+  cities: City[];
+}
+
+export interface AppConfig {
+  dataRefreshIntervalMinutes: number;
+  pageReloadHours: number;
+  scrollSpeedPixelsPerSecond: number;
+  pauseAtTopSeconds: number;
+  pauseAtBottomSeconds: number;
 }

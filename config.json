@@ -1,1 +1,7 @@
-{}
+{
+  "dataRefreshIntervalMinutes": 15,
+  "pageReloadHours": 24,
+  "scrollSpeedPixelsPerSecond": 50,
+  "pauseAtTopSeconds": 5,
+  "pauseAtBottomSeconds": 5
+}
