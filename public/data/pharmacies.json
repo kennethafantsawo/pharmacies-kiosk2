@@ -1,9 +1,10 @@
+
 {
   "metadata": {
     "week_start": "2026-02-16",
-    "week_end": "2026-02-22",
+    "week_end": "2026-02-23",
     "source_url": "https://www.pharmaciens.tg/on-call",
-    "last_updated": "2026-02-18T10:00:00Z"
+    "last_updated": "2026-02-18T12:00:00.000Z"
   },
   "zones": [
     {
@@ -13,7 +14,7 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_sainte_rita_a2",
+          "id": "pharm_pharmacie_sainte_rita_a2",
           "name": "Pharmacie Sainte Rita",
           "address": "Rue pavée Doulassamé Face Hotel SANA",
           "phone": "+22896800970",
@@ -23,7 +24,7 @@
           "is_24h": false
         },
         {
-          "id": "pharm_be_kpehenou_a2",
+          "id": "pharm_pharmacie_be_kpehenou_a2",
           "name": "Pharmacie Be Kpehenou",
           "address": "Boulevard Félix HOUPHOUET - BOIGNY à Bè Kpéhénou",
           "phone": "+22870452503",
@@ -41,7 +42,7 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_matthia_a1",
+          "id": "pharm_pharmacie_matthia_a1",
           "name": "Pharmacie Matthia",
           "address": "1048 Avenue de la Libération",
           "phone": "+22822212964",
@@ -51,7 +52,7 @@
           "is_24h": false
         },
         {
-          "id": "pharm_sante_a1",
+          "id": "pharm_pharmacie_sante_a1",
           "name": "Pharmacie Sante",
           "address": "Pres de NOPATO",
           "phone": "+22870449137",
@@ -69,17 +70,17 @@
       "city": "Dapaong",
       "pharmacies": [
         {
-          "id": "pharm_sauveur_dapaong",
+          "id": "pharm_pharmacie_sauveur_dapaong",
           "name": "Pharmacie Sauveur",
           "address": "non loin ECOBANK DAPAONG",
-          "phone": "",
-          "phone_formatted": "",
+          "phone": "+228",
+          "phone_formatted": "+228",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_tone_dapaong",
+          "id": "pharm_pharmacie_tone_dapaong",
           "name": "Pharmacie Tone",
           "address": "A coté du PSI Dapaong",
           "phone": "+22870210758",
@@ -92,15 +93,7 @@
     }
   ],
   "cities": [
-    {
-      "name": "Lomé",
-      "zones": ["A1", "A2"],
-      "pharmacy_count": 4
-    },
-    {
-      "name": "Dapaong",
-      "zones": ["DAPAONG"],
-      "pharmacy_count": 2
-    }
+    { "name": "Lomé", "zones": ["A2", "A1"], "pharmacy_count": 4 },
+    { "name": "Dapaong", "zones": ["DAPAONG"], "pharmacy_count": 2 }
   ]
 }
