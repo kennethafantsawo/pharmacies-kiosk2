@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "week_start": "2023-10-09",
+    "week_end": "2023-10-15",
+    "source_url": "https://www.pharmaciens.tg/on-call",
+    "last_updated": "2023-10-09T10:00:00.000Z",
+    "is_backup": true
+  },
+  "zones": [
+    {
+      "zone_id": "BACKUP",
+      "zone_code": "ZONE DE SECOURS",
+      "zone_name": "DONNÉES DE SECOURS",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_backup_1",
+          "name": "Pharmacie de Secours Alpha",
+          "address": "123 Rue du Fallback, Lomé",
+          "phone": "+22899999901",
+          "phone_formatted": "+228 99 99 99 01",
+          "insurances": ["INAM", "CNSS"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": true
+        },
+        {
+          "id": "pharm_backup_2",
+          "name": "Pharmacie de Secours Beta",
+          "address": "456 Avenue de la Sauvegarde, Lomé",
+          "phone": "+22899999902",
+          "phone_formatted": "+228 99 99 99 02",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "name": "Lomé",
+      "zones": ["BACKUP"],
+      "pharmacy_count": 2
+    }
+  ]
+}

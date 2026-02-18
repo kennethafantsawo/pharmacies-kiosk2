@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "week_start": "2024-07-29",
+    "week_end": "2024-08-04",
+    "source_url": "https://www.pharmaciens.tg/on-call",
+    "last_updated": "2024-07-29T08:00:00.000Z"
+  },
+  "zones": [
+    {
+      "zone_id": "A1",
+      "zone_code": "ZONE A1",
+      "zone_name": "CENTRE VILLE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_la_paix_a1",
+          "name": "Pharmacie La Paix",
+          "address": "Boulevard du 13 Janvier, près de la Place de l'Indépendance, Lomé",
+          "phone": "+22822213456",
+          "phone_formatted": "+228 22 21 34 56",
+          "insurances": ["INAM", "CNSS", "SANLAM"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_du_peuple_a1",
+          "name": "Pharmacie du Peuple",
+          "address": "Face au grand marché de Lomé",
+          "phone": "+22822217890",
+          "phone_formatted": "+228 22 21 78 90",
+          "insurances": ["INAM"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": true
+        }
+      ]
+    },
+    {
+      "zone_id": "B2",
+      "zone_code": "ZONE B2",
+      "zone_name": "BÈ",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_espoir_b2",
+          "name": "Pharmacie de l'Espoir",
+          "address": "Marché de Bè, non loin du feu tricolore",
+          "phone": "+22890011223",
+          "phone_formatted": "+228 90 01 12 23",
+          "insurances": ["CNSS", "SUNU"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "KARA",
+      "zone_code": "KARA",
+      "zone_name": "VILLE DE KARA",
+      "city": "Kara",
+      "pharmacies": [
+        {
+          "id": "pharm_kara_centre_kara",
+          "name": "Pharmacie Kara Centre",
+          "address": "Au centre de la ville de Kara",
+          "phone": "+22826606060",
+          "phone_formatted": "+228 26 60 60 60",
+          "insurances": ["INAM", "CNSS"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "name": "Lomé",
+      "zones": ["A1", "B2"],
+      "pharmacy_count": 3
+    },
+    {
+      "name": "Kara",
+      "zones": ["KARA"],
+      "pharmacy_count": 1
+    }
+  ]
+}
