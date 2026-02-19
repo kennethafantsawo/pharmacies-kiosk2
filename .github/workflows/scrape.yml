@@ -5,9 +5,9 @@ name: Scraper les pharmacies chaque semaine
 on:
   # Permet de lancer ce workflow manuellement depuis l'onglet Actions de GitHub
   workflow_dispatch:
-  # Se déclenche chaque lundi à 3h00 du matin (UTC)
+  # Se déclenche chaque lundi à 9h00 du matin (UTC)
   schedule:
-    - cron: '0 3 * * 1'
+    - cron: '0 9 * * 1'
 
 jobs:
   scrape:
