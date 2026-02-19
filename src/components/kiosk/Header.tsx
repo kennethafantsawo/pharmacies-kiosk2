@@ -15,7 +15,8 @@ const Header = ({ weekStart, weekEnd, status, lastUpdated, currentTime }: Header
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long' });
+    // Force UTC timezone to prevent date shifts in different browser timezones
+    return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', timeZone: 'UTC' });
   }
 
   return (
