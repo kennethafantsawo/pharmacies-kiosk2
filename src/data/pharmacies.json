@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "week_start": "2024-07-22",
-    "week_end": "2024-07-28",
+    "week_start": "2026-02-16",
+    "week_end": "2026-02-22",
     "source_url": "https://www.pharmaciens.tg/on-call",
-    "last_updated": "2024-07-23T10:00:00Z"
+    "last_updated": "2026-02-19T09:00:00Z"
   },
   "zones": [
     {
@@ -989,3 +989,5 @@
     { "name": "Sokodé", "zones": ["SOKODE"], "pharmacy_count": 3 }
   ]
 }
+
+    
