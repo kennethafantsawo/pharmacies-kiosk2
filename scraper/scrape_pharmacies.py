@@ -148,7 +148,6 @@ def parse_zone_header(zone_text: str) -> Dict:
     return { "zone_id": sanitize_id(zone_text), "zone_code": zone_text, "zone_name": zone_text.title(), "city": "Unknown" }
 
 
-# ===== PARSING LOGIC (ADAPTED FROM USER) =====
 def split_assurances(text: str) -> List[str]:
     """Sépare les assurances en une liste lisible."""
     known = ['AMU', 'CNSS', 'INAM', 'SANLAM', 'GRAS SAVOYE', 'GTA-C2A', 'GTA-C2', 'AGCA', 'SUNU', 'TRANSVIE', 'FIDELIA ASSURANCE', 'FIDELIA', 'LA CITOYENNE', 'OLEA', 'NSIA', 'MSH', 'ASCOMA', 'LORICA']
@@ -159,59 +158,6 @@ def split_assurances(text: str) -> List[str]:
     found = re.findall(pattern, text)
     
     return sorted(list(set([f.strip().title() for f in found])))
-
-def extract_raw_pharmacies(html_content: str) -> List[Dict]:
-    """Extrait les données brutes des pharmacies en analysant le texte ligne par ligne."""
-    soup = BeautifulSoup(html_content, 'html.parser')
-    pharmacies = []
-    text = soup.get_text(separator='\n', strip=True)
-    lines = [line.strip() for line in text.split('\n') if line.strip()]
-    
-    current_zone = None
-    current_pharmacy = {}
-    
-    for line in lines:
-        if "SEMAINE DU" in line: continue
-        
-        is_zone = re.match(r'^(ZONE\s*[A-Z0-9]+[:\s-]*.*|[A-ZÀ-Ü\s-]{4,})$', line) and not line.startswith("Pharmacie") and len(line) < 50
-        
-        if is_zone:
-            if current_pharmacy.get('nom'):
-                pharmacies.append(current_pharmacy)
-                current_pharmacy = {}
-            current_zone = line
-            continue
-            
-        if line.startswith('Pharmacie '):
-            if current_pharmacy.get('nom'):
-                pharmacies.append(current_pharmacy)
-            
-            current_pharmacy = {
-                'zone': current_zone,
-                'nom': line.replace('#### ', '').strip(),
-                'adresse': '',
-                'telephone': '',
-                'assurances': []
-            }
-            continue
-            
-        if current_pharmacy.get('nom'):
-            phones = PHONE_PATTERN.findall(line)
-            if phones:
-                current_pharmacy['telephone'] = (current_pharmacy.get('telephone', '') + ' ' + ' '.join(phones)).strip()
-            elif 'Assurances' in line or line.isupper():
-                assurances_list = split_assurances(line)
-                if assurances_list:
-                     current_pharmacy['assurances'].extend(assurances_list)
-            elif not current_pharmacy['adresse']:
-                current_pharmacy['adresse'] = line
-            else:
-                current_pharmacy['adresse'] += ' ' + line
-    
-    if current_pharmacy.get('nom'):
-        pharmacies.append(current_pharmacy)
-    
-    return pharmacies
 
 
 # ===== SCRAPING & DATA STRUCTURING =====
@@ -228,14 +174,88 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
         logger.error(f"❌ Erreur de requête: {e}")
         return None
 
-    raw_pharmacies = extract_raw_pharmacies(html_content)
-    if not raw_pharmacies:
-        logger.warning("Aucune pharmacie brute extraite. La structure du site a peut-être changé.")
-        return None
-
     soup = BeautifulSoup(html_content, 'html.parser')
     dates = extract_week_dates(soup.get_text())
 
+    content_div = soup.find('div', class_='et_pb_text_inner')
+    if not content_div:
+        logger.error("❌ Structure du site modifiée: 'div.et_pb_text_inner' introuvable.")
+        return None
+
+    zones_dict = {}
+    current_zone_text = ""
+
+    for p_tag in content_div.find_all('p'):
+        p_text_stripped = p_tag.get_text(strip=True)
+        if not p_text_stripped or "SEMAINE DU" in p_text_stripped.upper():
+            continue
+
+        strong_tag = p_tag.find('strong')
+        if strong_tag:
+            zone_text_candidate = strong_tag.get_text(strip=True)
+            if len(zone_text_candidate) < 70 and "LOME-COMMUNE" not in zone_text_candidate:
+                current_zone_text = zone_text_candidate
+            continue
+
+        p_text_with_breaks = p_tag.get_text(separator='<br>', strip=True)
+        lines = [line.strip() for line in p_text_with_breaks.split('<br>') if line.strip()]
+
+        if lines and lines[0].strip().startswith('Pharmacie'):
+            if not current_zone_text:
+                logger.warning(f"Pharmacie orpheline trouvée : {lines[0]}")
+                continue
+
+            zone_info = parse_zone_header(current_zone_text)
+            zone_id = zone_info['zone_id']
+            if zone_id not in zones_dict:
+                zones_dict[zone_id] = {**zone_info, "pharmacies": []}
+
+            pharm_name = lines.pop(0)
+            address_parts = []
+            phones_found = []
+            insurances = []
+            is_insurance_section = False
+
+            for line in lines:
+                if 'assurances acceptées' in line.lower():
+                    is_insurance_section = True
+                    line_insurances = re.sub(r'Assurances acceptées:?', '', line, flags=re.I).strip()
+                    if line_insurances:
+                        insurances.append(line_insurances)
+                    continue
+                
+                if is_insurance_section:
+                    insurances.append(line)
+                elif PHONE_PATTERN.search(line):
+                    phones_found.extend(PHONE_PATTERN.findall(line))
+                else:
+                    address_parts.append(line)
+            
+            phone, phone_formatted = "", ""
+            all_phones_formatted = []
+            if phones_found:
+                for i, p_raw in enumerate(phones_found):
+                    p_compact, p_formatted = normalize_phone(p_raw)
+                    if i == 0:
+                        phone, phone_formatted = p_compact, p_formatted
+                    all_phones_formatted.append(p_formatted)
+            
+            pharm_id = f"pharm_{sanitize_id(pharm_name)}_{zone_id.lower()}"
+            
+            pharm_data = {
+                "id": pharm_id,
+                "name": pharm_name.title(),
+                "address": " ".join(address_parts).strip() or "Adresse non disponible",
+                "phone": phone,
+                "phone_formatted": " / ".join(all_phones_formatted) or phone_formatted,
+                "insurances": sorted(list(set(split_assurances(' '.join(insurances))))),
+                "coordinates": {"latitude": None, "longitude": None},
+                "is_24h": "24h" in pharm_name.lower() or "24/7" in pharm_name.lower()
+            }
+            
+            if not any(p['id'] == pharm_data['id'] for p in zones_dict[zone_id]['pharmacies']):
+                zones_dict[zone_id]['pharmacies'].append(pharm_data)
+    
     result = {
         "metadata": {
             "week_start": dates["week_start"], "week_end": dates["week_end"],
@@ -244,46 +264,8 @@ def scrape_pharmacies(url: str = BASE_URL) -> Optional[Dict]:
         "zones": [], "cities": {}
     }
 
-    zones_dict = {}
-
-    for raw_pharm in raw_pharmacies:
-        if not raw_pharm.get('zone') or not raw_pharm.get('nom'):
-            continue
-        
-        zone_info = parse_zone_header(raw_pharm['zone'])
-        zone_id = zone_info['zone_id']
-
-        if zone_id not in zones_dict:
-            zones_dict[zone_id] = {**zone_info, "pharmacies": []}
-
-        phone, phone_formatted = "", ""
-        all_phones_formatted = []
-        if raw_pharm.get('telephone'):
-            for i, p_raw in enumerate(PHONE_PATTERN.findall(raw_pharm['telephone'])):
-                p_compact, p_formatted = normalize_phone(p_raw)
-                if i == 0:
-                    phone, phone_formatted = p_compact, p_formatted
-                all_phones_formatted.append(p_formatted)
-
-        pharm_id = f"pharm_{sanitize_id(raw_pharm['nom'])}_{zone_id.lower()}"
-        
-        pharm_data = {
-            "id": pharm_id,
-            "name": raw_pharm['nom'].title(),
-            "address": raw_pharm.get('adresse', "Adresse non disponible").strip(),
-            "phone": phone,
-            "phone_formatted": " / ".join(all_phones_formatted) or phone_formatted,
-            "insurances": sorted(list(set(raw_pharm.get('assurances', [])))),
-            "coordinates": {"latitude": None, "longitude": None},
-            "is_24h": "24h" in raw_pharm['nom'].lower() or "24/7" in raw_pharm['nom'].lower()
-        }
-        
-        if not any(p['id'] == pharm_data['id'] for p in zones_dict[zone_id]['pharmacies']):
-            zones_dict[zone_id]['pharmacies'].append(pharm_data)
-
     result['zones'] = [zone for zone in zones_dict.values() if zone['pharmacies']]
     
-    # Calculer les stats par ville
     for zone in result['zones']:
         city_name = zone['city']
         if city_name not in result['cities']:
@@ -343,3 +325,5 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+    
