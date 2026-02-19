@@ -9,76 +9,68 @@ const LOCAL_STORAGE_KEY = 'togo-pharm-data';
 interface UsePharmacyDataProps {
   initialData: PharmacyData | null;
   backupData: PharmacyData | null;
-  refreshInterval: number;
+  refreshInterval: number; // This is no longer used but part of config
 }
 
 const usePharmacyData = ({
   initialData,
   backupData,
-  refreshInterval,
+  refreshInterval, // No longer used
 }: UsePharmacyDataProps) => {
-  const [data, setData] = useState<PharmacyData | null>(initialData);
+  const [data, setData] = useState<PharmacyData | null>(null);
   const [status, setStatus] = useState<DataStatus>('loading');
   const [lastUpdated, setLastUpdated] = useState<string | undefined>(undefined);
 
-  const loadFromLocalStorage = (): PharmacyData | null => {
-    try {
-      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (storedData) {
-        console.log("Loading data from Local Storage...");
-        return JSON.parse(storedData);
-      }
-    } catch (error) {
-      console.error("Failed to load or parse from local storage", error);
-    }
-    return null;
-  };
-
   useEffect(() => {
-    const initializeData = () => {
-      const localData = loadFromLocalStorage();
-      if (localData) {
-        setData(localData);
-        setStatus('offline');
-        setLastUpdated(new Date().toISOString());
-      } else if (initialData) {
-        setData(initialData);
-        setStatus('success');
-        setLastUpdated(initialData.metadata.last_updated);
-      } else if (backupData) {
-        setData(backupData);
-        setStatus('offline');
-        setLastUpdated(backupData.metadata.last_updated);
-      } else {
-        setStatus('error');
-      }
-    };
+    // Data is now bundled with the app. The most "up-to-date" data is what's passed from the server.
+    // The concept of fetching fresh data on the client is removed to ensure compatibility
+    // with static hosting environments like Vercel.
+    // The app will get new data when it's redeployed and the page is reloaded.
 
-    initializeData();
-
-    const fetchData = async () => {
-      console.log("Attempting to fetch fresh data...");
-      setLastUpdated(new Date().toISOString());
+    // Try loading from local storage first, for offline resilience.
+    const loadFromLocalStorage = (): PharmacyData | null => {
       try {
-        const response = await fetch('/data/pharmacies.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('Network response was not ok');
-        
-        const freshData: PharmacyData = await response.json();
-        console.log("Successfully fetched fresh data.");
-        setData(freshData);
-        setStatus('success');
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(freshData));
+        const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (storedData) {
+          console.log("Loading data from Local Storage...");
+          return JSON.parse(storedData);
+        }
       } catch (error) {
-        console.error("Failed to fetch fresh data:", error);
-        setStatus('offline'); // Fallback to offline on fetch error
-        // Data already in state is used (from local storage or initial)
+        console.error("Failed to load or parse from local storage", error);
       }
+      return null;
     };
 
-    const intervalId = setInterval(fetchData, refreshInterval);
+    const localData = loadFromLocalStorage();
 
-    return () => clearInterval(intervalId);
-  }, [initialData, backupData, refreshInterval]);
+    if (initialData) {
+      // If we have fresh data from the server, use it and update local storage.
+      setData(initialData);
+      setStatus('success');
+      setLastUpdated(initialData.metadata.last_updated);
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(initialData));
+      } catch (error) {
+        console.error("Failed to save data to local storage", error);
+      }
+    } else if (localData) {
+      // If server data is missing but we have local storage data
+      setData(localData);
+      setStatus('offline'); // Indicate that we're using potentially stale offline data
+      setLastUpdated(new Date().toISOString());
+    } else if (backupData) {
+      // If all else fails, use the bundled backup data
+      setData(backupData);
+      setStatus('offline');
+      setLastUpdated(backupData.metadata.last_updated);
+    } else {
+      // No data available at all
+      setStatus('error');
+    }
+  }, [initialData, backupData]);
+
+  // The client-side fetch interval is removed.
+  // Data updates now happen via deployment.
 
   return { data, status, lastUpdated };
 };

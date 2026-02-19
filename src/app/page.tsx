@@ -1,29 +1,21 @@
-import fs from 'fs/promises';
-import path from 'path';
 import KioskClient from '@/components/kiosk/KioskClient';
 import type { PharmacyData, AppConfig } from '@/lib/types';
 
-// Cette page est rendue côté serveur (SSR)
-export const revalidate = 0; // Pas de cache, toujours frais
+// Import data directly from the src directory.
+// This ensures they are included in the build by Next.js/Vercel.
+import configData from '@/data/config.json';
+import initialData from '@/data/pharmacies.json';
+import backupData from '@/data/backup.json';
 
-async function loadJsonData(filePath: string): Promise<any | null> {
-  try {
-    const fullPath = path.join(process.cwd(), filePath);
-    const fileContent = await fs.readFile(fullPath, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch (error) {
-    // Log l'erreur pour le débogage mais ne plante pas si un fichier est juste manquant
-    console.warn(`Avertissement: Impossible de charger le JSON de ${filePath}:`, error);
-    return null;
-  }
-}
+
+// This page is rendered on the server (SSR)
+export const revalidate = 0; // No cache, always fresh
 
 export default async function KioskPage() {
-  const initialData = await loadJsonData('public/data/pharmacies.json');
-  const backupData = await loadJsonData('public/data/backup.json');
-  const config = await loadJsonData('public/data/config.json');
+  const config = configData as AppConfig;
 
-  // Le fichier de config et au moins un fichier de données sont obligatoires
+  // The config file and at least one data file are mandatory
+  // This check is a safeguard, but an import failure would have already stopped the build.
   if (!config || (!initialData && !backupData)) {
     return (
       <div className="w-screen h-screen flex items-center justify-center bg-destructive text-destructive-foreground p-8">
@@ -32,18 +24,18 @@ export default async function KioskPage() {
           <p className="text-xl">
             Impossible de charger `config.json` et/ou les fichiers de données (`pharmacies.json`, `backup.json`).
           </p>
-          <p className="text-lg mt-2">Veuillez vérifier que ces fichiers existent et sont valides.</p>
+          <p className="text-lg mt-2">Veuillez vérifier que ces fichiers existent dans `src/data` et sont valides.</p>
         </div>
       </div>
     );
   }
 
-  // Priorise les données fraîches, mais se rabat sur le backup si elles sont indisponibles.
-  // Cela rend le rendu côté serveur résilient.
+  // Prioritize fresh data, but fall back to backup if unavailable.
+  // This makes server-side rendering resilient.
   const primaryData = initialData ?? backupData;
   
-  // Le hook côté client a aussi besoin d'un fichier de secours. Si le backup original est manquant,
-  // on peut fournir initialData comme secours pour le hook.
+  // The client-side hook also needs a fallback file. If the original backup is missing,
+  // we can provide initialData as a fallback for the hook.
   const secondaryData = backupData ?? initialData;
 
   return (
@@ -51,7 +43,7 @@ export default async function KioskPage() {
         <KioskClient
             initialData={primaryData as PharmacyData}
             backupData={secondaryData as PharmacyData}
-            config={config as AppConfig}
+            config={config}
         />
     </div>
   );

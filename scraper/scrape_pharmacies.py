@@ -17,7 +17,7 @@ import logging
 
 # ===== CONFIGURATION =====
 BASE_URL = "https://www.pharmaciens.tg/on-call"
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'data')
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'src', 'data')
 BACKUP_FILE = os.path.join(OUTPUT_DIR, 'backup.json')
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, 'pharmacies.json')
 LOG_DIR = os.path.join(os.path.dirname(__file__), '..', 'logs')
@@ -325,5 +325,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-
-    
