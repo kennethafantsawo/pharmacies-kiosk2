@@ -54,7 +54,8 @@ const useAutoScroll = ({
       if (scrollState.current.direction === 'down') {
         scrollContainer.scrollTop += scrollAmount;
 
-        // When scrolled past the first instance of content, loop back to the top
+        // When scrolled past the first instance of content, switch to 'up'
+        // This detects the bottom of the scrollable area of the first content block
         if (scrollTop >= contentHeight - clientHeight) {
           scrollState.current.direction = 'up';
           scrollState.current.isPaused = true;
@@ -64,16 +65,8 @@ const useAutoScroll = ({
         }
       } else { // Scrolling up
         scrollContainer.scrollTop -= scrollAmount;
-
-        if (scrollTop <= 0) {
-          scrollContainer.scrollTop = contentHeight; // Jump to the bottom of the duplicated content
-        }
         
-        // Check if we have scrolled back to the real top
-        if (scrollTop <= contentHeight - clientHeight + 5 && scrollTop > clientHeight) {
-            // This is a fuzzy check to see if we're near the top of the visible area in the second half
-        }
-
+        // When scrolled back to the real top, pause and switch to 'down'
         if (scrollContainer.scrollTop <= 1) {
             scrollState.current.direction = 'down';
             scrollState.current.isPaused = true;
@@ -87,10 +80,13 @@ const useAutoScroll = ({
       animationFrameId.current = requestAnimationFrame(scroll);
     };
 
-    // Start the scroll
-    animationFrameId.current = requestAnimationFrame(scroll);
+    // Start the scroll after an initial pause to let content render
+    const startTimeout = setTimeout(() => {
+        animationFrameId.current = requestAnimationFrame(scroll);
+    }, pauseAtTopSeconds * 1000);
 
     return () => {
+      clearTimeout(startTimeout);
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
