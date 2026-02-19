@@ -21,7 +21,7 @@ async function loadJsonData(filePath: string): Promise<any | null> {
 export default async function KioskPage() {
   const initialData = await loadJsonData('public/data/pharmacies.json');
   const backupData = await loadJsonData('public/data/backup.json');
-  const config = await loadJsonData('config.json');
+  const config = await loadJsonData('public/data/config.json');
 
   // Le fichier de config et au moins un fichier de données sont obligatoires
   if (!config || (!initialData && !backupData)) {
