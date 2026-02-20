@@ -11,7 +11,7 @@ const PharmacyCard = ({ pharmacy }: PharmacyCardProps) => {
   return (
     <Card className="bg-card border shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
       <CardHeader className="p-4 flex-shrink-0">
-        <CardTitle className="flex justify-between items-start text-2xl text-foreground font-bold">
+        <CardTitle className="flex justify-between items-start text-3xl text-accent-foreground font-bold">
           <span className="pr-2">{pharmacy.name}</span>
           {pharmacy.is_24h && (
             <Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white text-xs ml-3 flex-shrink-0">
