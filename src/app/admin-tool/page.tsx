@@ -5,6 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { PharmacyData, Zone, Pharmacy, City } from '@/lib/types';
+import { updatePharmaciesFile } from './actions';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from 'lucide-react';
+
 
 // Helper functions adapted from the Python scraper
 const normalizePhone = (phone: string): [string, string] => {
@@ -63,6 +67,9 @@ const AdminToolPage = () => {
   const [rawText, setRawText] = useState('');
   const [jsonOutput, setJsonOutput] = useState('');
   const [error, setError] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updateResult, setUpdateResult] = useState<{ success: boolean; message: string } | null>(null);
+
 
   const handleGenerate = () => {
     setError('');
@@ -106,6 +113,10 @@ const AdminToolPage = () => {
             } else if (line.toLowerCase().startsWith('assurances acceptées')) {
                 if (currentPharmacy) {
                     isInsuranceSection = true;
+                    const insuranceText = line.split(':')[1] || '';
+                    if (insuranceText.trim()) {
+                         currentPharmacy.insurances = [...(currentPharmacy.insurances || []), insuranceText.trim().toUpperCase()];
+                    }
                 }
             } else if (/(\+?228)?\s*(\d{2}\s*){4}/.test(line) || /^\d{8}$/.test(line.replace(/\s/g, ''))) {
                 if (currentPharmacy) {
@@ -173,6 +184,15 @@ const AdminToolPage = () => {
     zone.pharmacies.push(finalPharm);
   };
 
+  const handleUpdateServer = async () => {
+    if (!jsonOutput) return;
+    setIsUpdating(true);
+    setUpdateResult(null);
+    const result = await updatePharmaciesFile(jsonOutput);
+    setUpdateResult(result);
+    setIsUpdating(false);
+  };
+
 
   return (
     <div className="container mx-auto p-4 md:p-8">
@@ -181,13 +201,6 @@ const AdminToolPage = () => {
           <CardTitle>Outil de Conversion de Données</CardTitle>
           <CardDescription>
             Cet outil vous aide à transformer une liste brute de pharmacies en format JSON pour le site.
-            <ol className="list-decimal list-inside mt-2 space-y-1">
-                <li>Collez la liste brute des pharmacies dans le premier champ.</li>
-                <li>Cliquez sur "Générer le JSON".</li>
-                <li>**Important :** Modifiez les dates `week_start` et `week_end` dans le JSON généré.</li>
-                <li>Copiez le contenu du JSON et collez-le dans le fichier `src/data/pharmacies.json` (et `src/data/backup.json`).</li>
-                <li>Envoyez vos modifications sur GitHub pour déployer la mise à jour.</li>
-            </ol>
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -210,16 +223,37 @@ ASSIVITO face WATT
           <Button onClick={handleGenerate}>Générer le JSON</Button>
           {error && <p className="text-sm font-medium text-destructive">{error}</p>}
           {jsonOutput && (
-            <div className="grid gap-2">
-              <label htmlFor="json-output">2. Copiez le JSON généré :</label>
-              <Textarea
-                id="json-output"
-                value={jsonOutput}
-                readOnly
-                rows={25}
-                className="font-mono text-sm bg-muted/50"
-              />
-            </div>
+            <>
+                <div className="grid gap-2">
+                <label htmlFor="json-output">2. Copiez le JSON généré :</label>
+                <Textarea
+                    id="json-output"
+                    value={jsonOutput}
+                    readOnly
+                    rows={25}
+                    className="font-mono text-sm bg-muted/50"
+                />
+                </div>
+
+                <div className="space-y-4 rounded-lg border bg-card p-4">
+                <h3 className="font-semibold">3. Mettre à jour les données</h3>
+                <Alert>
+                  <Terminal className="h-4 w-4" />
+                  <AlertTitle>Note importante sur le déploiement</AlertTitle>
+                  <AlertDescription>
+                    La mise à jour via le bouton ci-dessous **fonctionne uniquement en environnement de développement local**. Sur Vercel, le système de fichiers est en lecture seule. Pour mettre à jour en production, vous devez copier le JSON, le coller dans `src/data/pharmacies.json` et `src/data/backup.json`, puis faire un `push` sur GitHub.
+                  </AlertDescription>
+                </Alert>
+                <Button onClick={handleUpdateServer} disabled={isUpdating}>
+                  {isUpdating ? 'Mise à jour en cours...' : 'Mettre à jour le serveur (Local)'}
+                </Button>
+                {updateResult && (
+                  <p className={`text-sm font-medium ${updateResult.success ? 'text-green-600' : 'text-destructive'}`}>
+                    {updateResult.message}
+                  </p>
+                )}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>
