@@ -1,10 +1,10 @@
 
 {
   "metadata": {
-    "week_start": "2026-02-23",
-    "week_end": "2026-03-02",
+    "week_start": "2026-03-02",
+    "week_end": "2026-03-09",
     "source_url": "https://www.pharmaciens.tg/on-call",
-    "last_updated": "2026-02-23T09:00:00Z"
+    "last_updated": "2026-03-02T09:00:00Z"
   },
   "zones": [
     {
@@ -395,7 +395,7 @@
           "address": "A côté de l'EPP Gakli, Djidjolé-Gakli, immeuble Favo",
           "phone": "+22822512286",
           "phone_formatted": "+228 22 51 22 86",
-          "insurances": ["Amu", "Inam", "Gras Savoye", "Olea", "Sanlam", "Ascoma", "Nsia"],
+          "insurances": ["Amu", "Inam", "GRAS SAVOYE", "OLEA", "SANLAM", "ASCOMA", "NSIA"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -505,7 +505,7 @@
           "address": "Agoè-Téléssou, à 50m du Carrefour Margot",
           "phone": "+22870425000",
           "phone_formatted": "+228 70 42 50 00",
-          "insurances": ["Inam", "Cnss", "Sanlam", "Sunu", "Gras Savoye"],
+          "insurances": ["INAM", "CNSS", "SANLAM", "SUNU", "GRAS SAVOYE"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -541,7 +541,7 @@
           "address": "A côté de l’Eglise Catholique d’Agoè-Nyivé",
           "phone": "+22891610262",
           "phone_formatted": "+228 91 61 02 62",
-          "insurances": ["Amu", "Ascoma", "Cnss", "Fidelia Assurance", "Gca", "Gras Savoye", "Gta-C2a", "Inam", "La Citoyenne", "Nsia", "Olea", "Sanlam", "Sunu", "Transvie"],
+          "insurances": ["AMU", "ASCOMA", "CNSS", "FIDELIA ASSURANCE", "GCA", "GRAS SAVOYE", "GTA-C2A", "INAM", "LA CITOYENNE", "NSIA", "OLEA", "SANLAM", "SUNU", "TRANSVIE"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -569,7 +569,7 @@
           "address": "Agoe Zongo sur la route national N1 près du terrain de Golfe",
           "phone": "+22892300656",
           "phone_formatted": "+228 92 30 06 56",
-          "insurances": ["Amu"],
+          "insurances": ["AMU"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -615,7 +615,7 @@
           "address": "AGOE Anonkui Route Mission Tové en face du Centre Culturel Loyola",
           "phone": "+22870084646",
           "phone_formatted": "+228 70 08 46 46",
-          "insurances": ["Amu", "Ascoma", "Inam", "Nsia", "Sanlam", "Sunu", "Transvie"],
+          "insurances": ["AMU", "ASCOMA", "INAM", "NSIA", "SANLAM", "SUNU", "TRANSVIE"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
