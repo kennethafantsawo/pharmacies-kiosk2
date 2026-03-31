@@ -8,35 +8,17 @@
   },
   "zones": [
     {
-      "zone_id": "A1",
-      "zone_code": "ZONE A1",
-      "zone_name": "CENTRE VILLE ET BE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_sante_a1",
-          "name": "Pharmacie SANTE",
-          "address": "Pres de NOPATO",
-          "phone": "+22870449137",
-          "phone_formatted": "+228 70 44 91 37",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
       "zone_id": "A3",
       "zone_code": "ZONE A3",
       "zone_name": "CENTRE VILLE ET BE",
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_des_etoiles_a3",
-          "name": "Pharmacie DES ETOILES",
-          "address": "10 Av de la Nouvelle Marche",
-          "phone": "+22822218847",
-          "phone_formatted": "+228 22 21 88 47",
+          "id": "pharm_du_centre_a3",
+          "name": "Pharmacie DU CENTRE",
+          "address": "ASSIVITO face WATT",
+          "phone": "+22891038383",
+          "phone_formatted": "+228 91 03 83 83",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -50,11 +32,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_sainte_rita_a2",
-          "name": "Pharmacie SAINTE RITA",
-          "address": "Rue pavée Doulassamé Face Hotel SANA",
-          "phone": "+22896800970",
-          "phone_formatted": "+228 96 80 09 70",
+          "id": "pharm_akofa_a2",
+          "name": "Pharmacie AKOFA",
+          "address": "Av Maman N'Danida Amoutivé",
+          "phone": "+22870499628",
+          "phone_formatted": "+228 70 49 96 28",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -68,11 +50,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_amessiame_be_a4",
-          "name": "Pharmacie AMESSIAME-BE",
-          "address": "Marché de BE",
-          "phone": "+22822214774",
-          "phone_formatted": "+228 22 21 47 74",
+          "id": "pharm_biova_a4",
+          "name": "Pharmacie BIOVA",
+          "address": "Bd Houphouet Boigny",
+          "phone": "+22870231923",
+          "phone_formatted": "+228 70 23 19 23",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -86,11 +68,21 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_eclair_a5",
-          "name": "Pharmacie ECLAIR",
-          "address": "Rue Avénou BE Ahligo dans le prolongement du Marché de Ahligo",
-          "phone": "+22896800906",
-          "phone_formatted": "+228 96 80 09 06",
+          "id": "pharm_des_apotres_a5",
+          "name": "Pharmacie DES APOTRES",
+          "address": "49, Bd Moboutou Sese Seko, Akodessewa non loin du Centre de Formation CAMA",
+          "phone": "+22870453805",
+          "phone_formatted": "+228 70 45 38 05",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_oceane_a5",
+          "name": "Pharmacie OCEANE",
+          "address": "Rue HOULATA, perpendiculaire rue de l'Ocam, face Hotel de la PAIX",
+          "phone": "+22822226277",
+          "phone_formatted": "+228 22 22 62 77",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -104,21 +96,21 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_horizon_b1",
-          "name": "Pharmacie HORIZON",
-          "address": "165 Bd du 13janvier Nyékonakpoe. Face Sapeurs Pompiers a coté de l'Immeuble AAC",
-          "phone": "+22890565256",
-          "phone_formatted": "+228 90 56 52 56",
-          "insurances": [],
+          "id": "pharm_emmanuel_b1",
+          "name": "Pharmacie EMMANUEL",
+          "address": "637 Av Duisbourg Face MIVIP Kodjoviakopé",
+          "phone": "+22890099403",
+          "phone_formatted": "+228 90 09 94 03",
+          "insurances": ["CNSS", "INAM", "GRAS SAVOYE", "GTA-C2A", "GCA", "SUNU"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_de_la_marina_b1",
-          "name": "Pharmacie DE LA MARINA",
-          "address": "Sur RN2 BD du Mono en face du poste frontière d'Aflao Kodjoviakope",
-          "phone": "+22891019691",
-          "phone_formatted": "+228 91 01 96 91",
+          "id": "pharm_mairie_b1",
+          "name": "Pharmacie MAIRIE",
+          "address": "39,Avenue Nicolas Grunitzky Nyékonakpoè",
+          "phone": "+22891032121",
+          "phone_formatted": "+228 91 03 21 21",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -132,11 +124,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_source_de_vie_b2",
-          "name": "Pharmacie SOURCE DE VIE",
-          "address": "Face Collège Protestant Tokoin Lomé",
-          "phone": "+22890882582",
-          "phone_formatted": "+228 90 88 25 82",
+          "id": "pharm_ave_maria_b2",
+          "name": "Pharmacie AVE MARIA",
+          "address": "Face ENSF ( Ecole Nationale des Sages Femmes ) près du CHU Tokoin",
+          "phone": "+22822223301",
+          "phone_formatted": "+228 22 22 33 01",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -150,12 +142,12 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_liberation_b4",
-          "name": "Pharmacie LIBERATION",
-          "address": "Avenue Libération Prolongée",
-          "phone": "+22896800935",
-          "phone_formatted": "+228 96 80 09 35",
-          "insurances": [],
+          "id": "pharm_amitie_b4",
+          "name": "Pharmacie AMITIE",
+          "address": "72 Av des Hydrocarbures SOTED",
+          "phone": "+22870256257",
+          "phone_formatted": "+228 70 25 62 57",
+          "insurances": ["AMU", "CNSS", "INAM", "TRANSVIE"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -168,11 +160,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_campus_b3",
-          "name": "Pharmacie CAMPUS",
-          "address": "ADEWI - Boulevard de la Kara a coté de l'UTB",
-          "phone": "+22896800885",
-          "phone_formatted": "+228 96 80 08 85",
+          "id": "pharm_saint_kisito_b3",
+          "name": "Pharmacie SAINT KISITO",
+          "address": "Bd. de la Kara près du Bar TAMTAM",
+          "phone": "+22896800964",
+          "phone_formatted": "+228 96 80 09 64",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -186,11 +178,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_klokpe_c5",
-          "name": "Pharmacie KLOKPE",
-          "address": "Derrière la Foire Togo 2000",
-          "phone": "+22896801003",
-          "phone_formatted": "+228 96 80 10 03",
+          "id": "pharm_therya_c5",
+          "name": "Pharmacie THERYA",
+          "address": "Petit contournement a 500m de la Foire internationale Togo 2000",
+          "phone": "+22870448177",
+          "phone_formatted": "+228 70 44 81 77",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -204,11 +196,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_providence_c2",
-          "name": "Pharmacie PROVIDENCE",
+          "id": "pharm_saint_paul_c2",
+          "name": "Pharmacie SAINT PAUL",
           "address": "Bd Jean Paul II",
-          "phone": "+22891148888",
-          "phone_formatted": "+228 91 14 88 88",
+          "phone": "+22822618508",
+          "phone_formatted": "+228 22 61 85 08",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -222,12 +214,12 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_univers_sante_c1",
-          "name": "Pharmacie UNIVERS-SANTE",
-          "address": "Bd GNASSINGBE Eyadéma Cité OUA face a l'entrée du CHU CAMPUS",
-          "phone": "+22893888331",
-          "phone_formatted": "+228 93 88 83 31",
-          "insurances": [],
+          "id": "pharm_le_jourdain_c1",
+          "name": "Pharmacie LE JOURDAIN",
+          "address": "Boulevard Léopold Sédar SENGHOR, face au CEG Tokoin Wuiti",
+          "phone": "+22892383050",
+          "phone_formatted": "+228 92 38 30 50",
+          "insurances": ["AMU", "CNSS", "INAM", "OLEA", "SANLAM", "SUNU", "TRANSVIE"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -240,21 +232,21 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_aeroport_c3",
-          "name": "Pharmacie AEROPORT",
-          "address": "Rte de l'Aéroport SITO",
-          "phone": "+22822262122",
-          "phone_formatted": "+228 22 26 21 22",
+          "id": "pharm_hedjranawe_c3",
+          "name": "Pharmacie HEDJRANAWE",
+          "address": "Avenue du Grand du Séminaire non loin de la Banque Atlantique",
+          "phone": "+22896800927",
+          "phone_formatted": "+228 96 80 09 27",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_internationale_c3",
-          "name": "Pharmacie INTERNATIONALE",
-          "address": "Sise Marché de Hédzranawoé Assiyéyé Boulevard du Haho",
-          "phone": "+22822268994",
-          "phone_formatted": "+228 22 26 89 94",
+          "id": "pharm_j_mimshak_c3",
+          "name": "Pharmacie J-MIMSHAK",
+          "address": "Rue Tchamba 964 a 50m de la base de Satom Hountigomè",
+          "phone": "+22892244270",
+          "phone_formatted": "+228 92 24 42 70",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -268,427 +260,11 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_des_lilas_c4",
-          "name": "Pharmacie DES LILAS",
-          "address": "123 HDN 07 Route de Kégué Boulevard Jean Paul II prolongé",
-          "phone": "+22896165589",
-          "phone_formatted": "+228 96 16 55 89",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "D1",
-      "zone_code": "ZONE D1",
-      "zone_name": "BE KPOTA- ZORRO BAR - ADAKPAME",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_de_l_union_d1",
-          "name": "Pharmacie DE L'UNION",
-          "address": "Bd Malfakassa face a la crèmerie BAMUDAS-BE KPOTA",
-          "phone": "+22822277174",
-          "phone_formatted": "+228 22 27 71 74",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_le_progres_d1",
-          "name": "Pharmacie LE PROGRES",
-          "address": "Adakpame Grd contournement, en face l'Ecole Privée Universelle",
-          "phone": "+22870458655",
-          "phone_formatted": "+228 70 45 86 55",
-          "insurances": ["AMU", "INAM", "ASCOMA", "SANLAM", "SUNU", "TRANSVIE", "DOUMEVI"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_la_ruche_d1",
-          "name": "Pharmacie LA RUCHE",
-          "address": "Attiégou derrière la clôture de l'aéroport voie menant au Grand Contournement",
-          "phone": "+22891541616",
-          "phone_formatted": "+228 91 54 16 16",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "E1",
-      "zone_code": "ZONE E1",
-      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_adidogome_e1",
-          "name": "Pharmacie ADIDOGOME",
-          "address": "Face au Camp du 2eme RI d'Adidogomé",
-          "phone": "+22891057821",
-          "phone_formatted": "+228 91 05 78 21",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "E2",
-      "zone_code": "ZONE E2",
-      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_siloe_e2",
-          "name": "Pharmacie SILOE",
-          "address": "Carrefour Aflao Apédokoe Atigangome",
-          "phone": "+2289082639",
-          "phone_formatted": "+228 90 82 63 9",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "E3",
-      "zone_code": "ZONE E3",
-      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_actuelle_e3",
-          "name": "Pharmacie ACTUELLE",
-          "address": "Route de Ségbé , Quartier Sagbado - Adidogome",
-          "phone": "+22890614644",
-          "phone_formatted": "+228 90 61 46 44",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_segbe_e3",
-          "name": "Pharmacie SEGBE",
-          "address": "Ségbé qt Zanvi près del'EPP et du CEG Ségbé",
-          "phone": "+22892594935",
-          "phone_formatted": "+228 92 59 49 35",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_wastine_e3",
-          "name": "Pharmacie WASTINE",
-          "address": "Adidogome Logoté a 400m du carrefour logoté sur la route menant au quartier Lankouvi",
-          "phone": "+22892611700",
-          "phone_formatted": "+228 92 61 17 00",
-          "insurances": ["AMU", "INAM"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "F1",
-      "zone_code": "ZONE F1",
-      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_djidjole_f1",
-          "name": "Pharmacie DJIDJOLE",
-          "address": "DJIDJOLE",
-          "phone": "+22893939927",
-          "phone_formatted": "+228 93 93 99 27",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_saint_joseph_f1",
-          "name": "Pharmacie SAINT JOSEPH",
-          "address": "Bretelle de BE KLIKAME",
-          "phone": "+22896800965",
-          "phone_formatted": "+228 96 80 09 65",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "F2",
-      "zone_code": "ZONE F2",
-      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_vigueur_f2",
-          "name": "Pharmacie VIGUEUR",
-          "address": "Rue 267 AGBALEPEDOGAN Kilimandjaro",
-          "phone": "+22870448196",
-          "phone_formatted": "+228 70 44 81 96",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "F3",
-      "zone_code": "ZONE F3",
-      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_du_millenaire_f3",
-          "name": "Pharmacie DU MILLENAIRE",
-          "address": "Face réserve de la gendarmerie d'Agoe -Nyivé sur la route de 50m à 300m du cote Nord",
-          "phone": "+22870213197",
-          "phone_formatted": "+228 70 21 31 97",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "G1",
-      "zone_code": "ZONE G1",
-      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_dieudonne_g1",
-          "name": "Pharmacie DIEUDONNE",
-          "address": "AGOE- TELESSOU NON LOIN DE LA STATION CAP",
-          "phone": "+22870448459",
-          "phone_formatted": "+228 70 44 84 59",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "G2",
-      "zone_code": "ZONE G2",
-      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_ossan_g2",
-          "name": "Pharmacie OSSAN",
-          "address": "Carrefour AVEDZI, face Ets LA LIMOUSINE",
-          "phone": "+22870404425",
-          "phone_formatted": "+228 70 40 44 25",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "G3",
-      "zone_code": "ZONE G3",
-      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_apollon_g3",
-          "name": "Pharmacie APOLLON",
-          "address": "Avédji Face complexe scolaire Makafui-non loin du carrefour des Hirondelles",
-          "phone": "+22893504255",
-          "phone_formatted": "+228 93 50 42 55",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_yeshua_g3",
-          "name": "Pharmacie YESHUA",
-          "address": "AGOE Vakpossito vers l'Ecole NDE, entre le CMS MUR et le CMS Maranatha",
-          "phone": "+22898772153",
-          "phone_formatted": "+228 98 77 21 53",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "H2",
-      "zone_code": "ZONE H2",
-      "zone_name": "AGOENYIVE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_clemence_h2",
-          "name": "Pharmacie CLEMENCE",
-          "address": "Rte de la Cour d'Appel entre l'Agence CEET Agoe et l'Ecole privée La Source",
-          "phone": "+22870193535",
-          "phone_formatted": "+228 70 19 35 35",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "H1",
-      "zone_code": "ZONE H1",
-      "zone_name": "AGOENYIVE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_saint_michel_h1",
-          "name": "Pharmacie SAINT MICHEL",
-          "address": "Située a Agoe Nyivé entre la Brasserie BB et l'espace Télécom",
-          "phone": "+22822217022",
-          "phone_formatted": "+228 22 21 70 22",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_saint_esprit_h1",
-          "name": "Pharmacie SAINT ESPRIT",
-          "address": "Sur la Bretelle Agoe Nyivé Kégué Face au CEG Agoe Est",
-          "phone": "+22870402906",
-          "phone_formatted": "+228 70 40 29 06",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "I1",
-      "zone_code": "ZONE I1",
-      "zone_name": "TOGBLEKOPE - ADETIKOPE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_tchepson_i1",
-          "name": "Pharmacie TCHEPSON",
-          "address": "Face Terminal du Sahel TOGBLEKOPE",
-          "phone": "+22870429441",
-          "phone_formatted": "+228 70 42 29 44 1",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_le_rocher_i1",
-          "name": "Pharmacie LE ROCHER",
-          "address": "Agoe Zongo sur la route national N1 près du terrain de Golfe",
-          "phone": "+22892300656",
-          "phone_formatted": "+228 92 30 06 56",
-          "insurances": ["AMU"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "I2",
-      "zone_code": "ZONE I2",
-      "zone_name": "TOGBLEKOPE - ADETIKOPE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_assurance_i2",
-          "name": "Pharmacie ASSURANCE",
-          "address": "Adétikopé, National N1 non loin du marché",
-          "phone": "+22893087676",
-          "phone_formatted": "+228 93 08 76 76",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "J1",
-      "zone_code": "ZONE J1",
-      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_alta_j1",
-          "name": "Pharmacie ALTA",
-          "address": "AGOE Anonkui Route Mission Tové en face du Centre Culturel Loyola",
-          "phone": "+22870084646",
-          "phone_formatted": "+228 70 08 46 46",
-          "insurances": ["AMU", "ASCOMA", "INAM", "NSIA", "SANLAM", "SUNU", "TRANSVIE"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_la_main_de_dieu_j1",
-          "name": "Pharmacie LA MAIN DE DIEU",
-          "address": "AGOE ASSIYEYE non loin du Temple des Assemblées de Dieu Temple Galilée",
-          "phone": "+22893402121",
-          "phone_formatted": "+228 93 40 21 21",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "J2",
-      "zone_code": "ZONE J2",
-      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_divina_gracia_j2",
-          "name": "Pharmacie DIVINA GRACIA",
-          "address": "Quartier Agoe Fiovi Carrefour Bafana Bafana",
-          "phone": "+22893839100",
-          "phone_formatted": "+228 93 83 91 00",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_la_baraka_j2",
-          "name": "Pharmacie LA BARAKA",
-          "address": "Agoè LOGOPE, non loin de l'ECOLE LA BRUYERE A PROXIMITE DU CAMP GP",
-          "phone": "+22890174928",
-          "phone_formatted": "+228 90 17 49 28",
-          "insurances": ["AMU", "CNSS", "INAM"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "K2",
-      "zone_code": "ZONE K2",
-      "zone_name": "SANGUERA KLEME- ZOSSIME",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_zossime_k2",
-          "name": "Pharmacie ZOSSIME",
-          "address": "AGOE-Zossime pres du marché",
-          "phone": "+22822554352",
-          "phone_formatted": "+228 22 55 43 52",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_saint_sylvestre_k2",
-          "name": "Pharmacie SAINT SYLVESTRE",
-          "address": "Zanguéra,Quartier Sanyramé, non loin du rond-point Sanyramé",
-          "phone": "+22893515198",
-          "phone_formatted": "+228 93 51 51 98",
+          "id": "pharm_kouessan_c4",
+          "name": "Pharmacie KOUESSAN",
+          "address": "En face du Stade de Kégué",
+          "phone": "+22896801001",
+          "phone_formatted": "+228 96 80 10 01",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -702,21 +278,457 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_saint_philippe_k1",
-          "name": "Pharmacie SAINT PHILIPPE",
-          "address": "SANGUERA Rte Lomé- Kpalimé pres de la station OANDO",
-          "phone": "+22890673324",
-          "phone_formatted": "+228 90 67 33 24",
+          "id": "pharm_mawulom_k1",
+          "name": "Pharmacie MAWULOM",
+          "address": "Agoe quartier Athiémé Carrefour Kponsé",
+          "phone": "+22870178787",
+          "phone_formatted": "+228 70 17 87 87",
+          "insurances": ["AMU"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_sanguera_k1",
+          "name": "Pharmacie SANGUERA",
+          "address": "Près du lycée Sanguera",
+          "phone": "+22870428080",
+          "phone_formatted": "+228 70 42 80 80",
+          "insurances": ["AMU", "CNSS", "INAM", "SUNU", "NSIA", "GCA", "SANLAM", "GRAS SAVOYE", "ASCOMA", "LORICA", "OLEA", "TRANSVIE", "FIDELIA ASSURANCE", "LA CITOYENNE"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_nellys_k1",
+          "name": "Pharmacie NELLY'S",
+          "address": "Klémé Agokpanou, non loin du château d'eau, sur la voie de Ségbé à Sanguéra",
+          "phone": "+22892011100",
+          "phone_formatted": "+228 92 01 11 00",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "D1",
+      "zone_code": "ZONE D1",
+      "zone_name": "BE KPOTA- ZORRO BAR - ADAKPAME",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_fidelia_d1",
+          "name": "Pharmacie FIDELIA",
+          "address": "Bè-Kpota, Route d'Attiégou, près de l'hôtel 'LE REFERENTIEL'",
+          "phone": "+22896800918",
+          "phone_formatted": "+228 96 80 09 18",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_eva_k1",
-          "name": "Pharmacie EVA",
-          "address": "SANGUERA Klikame non loin du T-OIL",
-          "phone": "+22892163232",
-          "phone_formatted": "+228 92 16 32 32",
+          "id": "pharm_sarah_d1",
+          "name": "Pharmacie SARAH",
+          "address": "Près du centre de santé d'Adakpamé",
+          "phone": "+22870426902",
+          "phone_formatted": "+228 70 42 69 02",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "E1",
+      "zone_code": "ZONE E1",
+      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_eli_beraca_e1",
+          "name": "Pharmacie ELI-BERACA",
+          "address": "Route d'Adidogomé, Immeuble SIKOVIC face bureau de poste",
+          "phone": "+22899911342",
+          "phone_formatted": "+228 99 91 13 42",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "E2",
+      "zone_code": "ZONE E2",
+      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_la_reference_e2",
+          "name": "Pharmacie LA REFERENCE",
+          "address": "Route de Kpalimé, Adidogomé Assiyéyé, à côté du bar Madiba",
+          "phone": "+22896800996",
+          "phone_formatted": "+228 96 80 09 96",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "E3",
+      "zone_code": "ZONE E3",
+      "zone_name": "ADIDOGOME- SAGBADO- APEDOKOE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_bonte_e3",
+          "name": "Pharmacie BONTE",
+          "address": "Route de SEGBE, Wonyomé-Adidogomé en face de la station Sanol",
+          "phone": "+22822507431",
+          "phone_formatted": "+228 22 50 74 31",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_azur_e3",
+          "name": "Pharmacie AZUR",
+          "address": "Apédokoè-Gbomamé, rte d'Atigangomé, Carrefour Obéna, près de l'eglise Pentécôte",
+          "phone": "+22890494456",
+          "phone_formatted": "+228 90 49 44 56",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_aurore_e3",
+          "name": "Pharmacie AURORE",
+          "address": "LANKOUVI, non-loin de l'école La divine providence",
+          "phone": "+22871007575",
+          "phone_formatted": "+228 71 00 75 75",
+          "insurances": ["AMU", "CNSS"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "F1",
+      "zone_code": "ZONE F1",
+      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_jahnap_f1",
+          "name": "Pharmacie JAHNAP",
+          "address": "A côté de l'EPP Gakli, Djidjolé-Gakli, immeuble Favo",
+          "phone": "+22822512286",
+          "phone_formatted": "+228 22 51 22 86",
+          "insurances": ["AMU", "INAM", "GRAS SAVOYE", "OLEA", "SANLAM", "ASCOMA", "NSIA"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "F2",
+      "zone_code": "ZONE F2",
+      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_confiance_f2",
+          "name": "Pharmacie CONFIANCE",
+          "address": "Face GTA",
+          "phone": "+22870157846",
+          "phone_formatted": "+228 70 15 78 46",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_du_groupe_c_f2",
+          "name": "Pharmacie DU GROUPE C",
+          "address": "Agbalépédogan face Clinique la Victoire non loin de l'EPP Groupe C",
+          "phone": "+22899982087",
+          "phone_formatted": "+228 99 98 20 87",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "F3",
+      "zone_code": "ZONE F3",
+      "zone_name": "BE KLIKAME- DJIDJOLE-TOTSI",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_lumiere_f3",
+          "name": "Pharmacie LUMIERE",
+          "address": "AGBALEPEDOGAN - Lossossime près du Rond Point de l'Œuf",
+          "phone": "+22870431549",
+          "phone_formatted": "+228 70 43 15 49",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "G1",
+      "zone_code": "ZONE G1",
+      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_des_orchidees_g1",
+          "name": "Pharmacie DES ORCHIDEES",
+          "address": "AGOE-TELESSOU, LEO 2000",
+          "phone": "+22893431049",
+          "phone_formatted": "+228 93 43 10 49",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "G2",
+      "zone_code": "ZONE G2",
+      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_de_la_victoire_g2",
+          "name": "Pharmacie DE LA VICTOIRE",
+          "address": "Avédji Wessomé, sur le Bd Faure Gnassingbé (voie douane d'Adidogomé-Limousine), après les rails.",
+          "phone": "+22870457492",
+          "phone_formatted": "+228 70 45 74 92",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_solidarite_g2",
+          "name": "Pharmacie SOLIDARITE",
+          "address": "Rue Avédji Limousine, Près de l'UTB Totsi BP : 8919 Lomé - TOGO",
+          "phone": "+22896800976",
+          "phone_formatted": "+228 96 80 09 76",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "G3",
+      "zone_code": "ZONE G3",
+      "zone_name": "AVEDJI-ADIDO ADIN -VAKPOSSITO",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_arc_en_ciel_g3",
+          "name": "Pharmacie ARC-EN-CIEL",
+          "address": "Agoè-Téléssou, à 50m du Carrefour Margot",
+          "phone": "+22870425000",
+          "phone_formatted": "+228 70 42 50 00",
+          "insurances": ["INAM", "CNSS", "SANLAM", "SUNU", "GRAS SAVOYE"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "H2",
+      "zone_code": "ZONE H2",
+      "zone_name": "AGOENYIVE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_shalom_h2",
+          "name": "Pharmacie SHALOM",
+          "address": "Agoè-Cacavéli, non loin de BKS. Sur Bd Faure GNASSINGBE",
+          "phone": "+22893587823",
+          "phone_formatted": "+228 93 58 78 23",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "H1",
+      "zone_code": "ZONE H1",
+      "zone_name": "AGOENYIVE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_agoenvive_h1",
+          "name": "Pharmacie AGOENVIVE",
+          "address": "A côté de l’Eglise Catholique d’Agoè-Nyivé",
+          "phone": "+22891610262",
+          "phone_formatted": "+228 91 61 02 62",
+          "insurances": ["AMU", "ASCOMA", "CNSS", "FIDELIA ASSURANCE", "GCA", "GRAS SAVOYE", "GTA-C2A", "INAM", "LA CITOYENNE", "NSIA", "OLEA", "SANLAM", "SUNU", "TRANSVIE"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "I1",
+      "zone_code": "ZONE I1",
+      "zone_name": "TOGBLEKOPE - ADETIKOPE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_zongo_i1",
+          "name": "Pharmacie ZONGO",
+          "address": "Togblékopé carrefour Hermann entre Orabank et la station Sanol Togblékopé",
+          "phone": "+22870499655",
+          "phone_formatted": "+228 70 49 96 55",
+          "insurances": ["INAM", "AMU"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_liddy_i1",
+          "name": "Pharmacie LIDDY",
+          "address": "AGOE-DIKAME, Bernard Copé après la station CAP en face du Camp de tir",
+          "phone": "+22870901960",
+          "phone_formatted": "+228 70 90 19 60",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_zilidji_i1",
+          "name": "Pharmacie ZILIDJI",
+          "address": "Derrière le marche d'agoè zongo",
+          "phone": "+22892616608",
+          "phone_formatted": "+228 92 61 66 08",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "I2",
+      "zone_code": "ZONE I2",
+      "zone_name": "TOGBLEKOPE - ADETIKOPE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_elemawussi_i2",
+          "name": "Pharmacie ELEMAWUSSI",
+          "address": "Adétikopé, Médina, Nationale N°1, avant PIA (Plateforme Industrielle)",
+          "phone": "+22892340680",
+          "phone_formatted": "+228 92 34 06 80",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_koboyo_i2",
+          "name": "Pharmacie KOBOYO",
+          "address": "DAVIE, rte de la Nationale No 1 avant le péage de Davié en face de la Station Sanol",
+          "phone": "+22893704812",
+          "phone_formatted": "+228 93 70 48 12",
+          "insurances": ["AMU", "INAM", "FIDELIA ASSURANCE", "GTA-C2A", "LA CITOYENNE", "OLEA", "SANLAM", "SUNU"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "J1",
+      "zone_code": "ZONE J1",
+      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_sala_houbeida_j1",
+          "name": "Pharmacie SALA HOUBEIDA",
+          "address": "Agoè Kelegougan (Koffi Panou, Carrefour O'queens)",
+          "phone": "+22891911535",
+          "phone_formatted": "+228 91 91 15 35",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_excellence_j1",
+          "name": "Pharmacie EXCELLENCE",
+          "address": "AGOE Démakpoé Voie CEDEAO",
+          "phone": "+22822502447",
+          "phone_formatted": "+228 22 50 24 47",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_vitas_j1",
+          "name": "Pharmacie VITAS",
+          "address": "Située à Agoè Assiyéyé du côté ouest",
+          "phone": "+2282256343",
+          "phone_formatted": "+228 22 56 34 3",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "J2",
+      "zone_code": "ZONE J2",
+      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_aureole_j2",
+          "name": "Pharmacie AUREOLE",
+          "address": "Agoe Trokpossimé au carrefour camp GP a 50m de l'EPP du camp GP",
+          "phone": "+22870709898",
+          "phone_formatted": "+228 70 70 98 98",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_espace_vie_j2",
+          "name": "Pharmacie ESPACE-VIE",
+          "address": "AGOE Logopé non loin de place de Loisir BKS 2",
+          "phone": "+22899858907",
+          "phone_formatted": "+228 99 85 89 07",
+          "insurances": ["AMU", "CNSS", "INAM"],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
+      "zone_id": "K2",
+      "zone_code": "ZONE K2",
+      "zone_name": "SANGUERA KLEME- ZOSSIME",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_sag_biba_k2",
+          "name": "Pharmacie SAG'BIBA",
+          "address": "AGOE-Nanegbe à côté de la station T-Oil",
+          "phone": "+22891838783",
+          "phone_formatted": "+228 91 83 87 83",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_la_shekina_k2",
+          "name": "Pharmacie LA SHEKINA",
+          "address": "AGOE-NYIVE Qt Atiomé carrefour Amadenta",
+          "phone": "+22893339205",
+          "phone_formatted": "+228 93 33 92 05",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -730,21 +742,21 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_nouvelle_tulipe_l1",
-          "name": "Pharmacie NOUVELLE TULIPE",
-          "address": "Route de Mission Tové près de la station CAP Agoe Légbassito",
-          "phone": "+22899470070",
-          "phone_formatted": "+228 99 47 00 70",
+          "id": "pharm_a_dieu_la_gloire_l1",
+          "name": "Pharmacie A DIEU LA GLOIRE",
+          "address": "Marché de Légbassito, à côté de la Poste, sur le grand contournement",
+          "phone": "+22893263600",
+          "phone_formatted": "+228 93 26 36 00",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_gratitude_l1",
-          "name": "Pharmacie GRATITUDE",
-          "address": "Agoe Légbassito Zovadjin non loin du carrefour Avinato",
-          "phone": "+22892189485",
-          "phone_formatted": "+228 92 18 94 85",
+          "id": "pharm_observance_l1",
+          "name": "Pharmacie OBSERVANCE",
+          "address": "SOGBOSSITO en face de la Station TOTAL ENERGIES a coté du CAMP BIR",
+          "phone": "+22822504860",
+          "phone_formatted": "+228 22 50 48 60",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -758,21 +770,21 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_de_l_eden_m1",
-          "name": "Pharmacie de L' EDEN",
-          "address": "Route d'Aneho face cité Baguida",
-          "phone": "+22870421398",
-          "phone_formatted": "+228 70 42 13 98",
+          "id": "pharm_le_destin_m1",
+          "name": "Pharmacie LE DESTIN",
+          "address": "A côté de l'Agence ECOBANK de Baguida",
+          "phone": "+22870411541",
+          "phone_formatted": "+228 70 41 11 54 1",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_principale_m1",
-          "name": "Pharmacie PRINCIPALE",
-          "address": "Route d'Aneho Kogan Yovo kopé",
-          "phone": "+22890826767",
-          "phone_formatted": "+228 90 82 67 67",
+          "id": "pharm_veronique_m1",
+          "name": "Pharmacie VERONIQUE",
+          "address": "Avépozo en face de l'école nationale de gendarmerie D'Avépozo",
+          "phone": "+22892034040",
+          "phone_formatted": "+228 92 03 40 40",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
@@ -786,22 +798,22 @@
       "city": "Lomé",
       "pharmacies": [
         {
-          "id": "pharm_saint_pio_n1",
-          "name": "Pharmacie SAINT PIO",
-          "address": "KLOBATEME, non loin du Complexe scolaire le Bon Samaritain",
-          "phone": "+22893404040",
-          "phone_formatted": "+228 93 40 40 40",
+          "id": "pharm_sika_n1",
+          "name": "Pharmacie SIKA",
+          "address": "DJAGBLE Hihieatro à 200m du complexe scolaire la Persévérance rte d'Akakopé- Gbamakopé",
+          "phone": "+22892620651",
+          "phone_formatted": "+228 92 62 06 51",
           "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         },
         {
-          "id": "pharm_patience_n1",
-          "name": "Pharmacie PATIENCE",
-          "address": "DJAGBLE a 300m du CMS Ayokléfé",
-          "phone": "+22870052339",
-          "phone_formatted": "+228 70 05 23 39",
-          "insurances": [],
+          "id": "pharm_ajp_abolave_n1",
+          "name": "Pharmacie AJP-ABOLAVE",
+          "address": "Djablé,sur la route d'abolavé à 50m du siège de la CEET Djagblé",
+          "phone": "+22890413402",
+          "phone_formatted": "+228 90 41 34 02",
+          "insurances": ["AMU", "CNSS", "INAM"],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
@@ -811,7 +823,7 @@
   "cities": [
     {
       "name": "Lomé",
-      "zones": ["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "C5", "D1", "E1", "E2", "E3", "F1", "F2", "F3", "G1", "G2", "G3", "H1", "H2", "I1", "I2", "J1", "J2", "K1", "K2", "L1", "M1", "N1"],
+      "zones": ["A3", "A2", "A4", "A5", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "C5", "D1", "E1", "E2", "E3", "F1", "F2", "F3", "G1", "G2", "G3", "H1", "H2", "I1", "I2", "J1", "J2", "K1", "K2", "L1", "M1", "N1"],
       "pharmacy_count": 55
     }
   ]
