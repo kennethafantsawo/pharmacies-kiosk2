@@ -576,6 +576,44 @@
       ]
     },
     {
+      "zone_id": "J1",
+      "zone_code": "ZONE J1",
+      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
+      "city": "Lomé",
+      "pharmacies": [
+        {
+          "id": "pharm_sala_houbeida_j1",
+          "name": "Pharmacie SALA HOUBEIDA",
+          "address": "Agoè Kelegougan (Koffi Panou, Carrefour O'queens)",
+          "phone": "+22891911535",
+          "phone_formatted": "+228 91 91 15 35",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_excellence_j1",
+          "name": "Pharmacie EXCELLENCE",
+          "address": "AGOE Démakpoé Voie CEDEAO",
+          "phone": "+22822502447",
+          "phone_formatted": "+228 22 50 24 47",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        },
+        {
+          "id": "pharm_vitas_j1",
+          "name": "Pharmacie VITAS",
+          "address": "Située à Agoè Assiyéyé du côté ouest",
+          "phone": "+2282256343",
+          "phone_formatted": "+228 22 56 34 3",
+          "insurances": [],
+          "coordinates": { "latitude": null, "longitude": null },
+          "is_24h": false
+        }
+      ]
+    },
+    {
       "zone_id": "I1",
       "zone_code": "ZONE I1",
       "zone_name": "TOGBLEKOPE - ADETIKOPE",
@@ -636,44 +674,6 @@
           "phone": "+22893704812",
           "phone_formatted": "+228 93 70 48 12",
           "insurances": ["AMU", "INAM", "FIDELIA ASSURANCE", "GTA-C2A", "LA CITOYENNE", "OLEA", "SANLAM", "SUNU"],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        }
-      ]
-    },
-    {
-      "zone_id": "J1",
-      "zone_code": "ZONE J1",
-      "zone_name": "AGOE ASSIYEYE - DEMAKPOE-LOGOPE",
-      "city": "Lomé",
-      "pharmacies": [
-        {
-          "id": "pharm_sala_houbeida_j1",
-          "name": "Pharmacie SALA HOUBEIDA",
-          "address": "Agoè Kelegougan (Koffi Panou, Carrefour O'queens)",
-          "phone": "+22891911535",
-          "phone_formatted": "+228 91 91 15 35",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_excellence_j1",
-          "name": "Pharmacie EXCELLENCE",
-          "address": "AGOE Démakpoé Voie CEDEAO",
-          "phone": "+22822502447",
-          "phone_formatted": "+228 22 50 24 47",
-          "insurances": [],
-          "coordinates": { "latitude": null, "longitude": null },
-          "is_24h": false
-        },
-        {
-          "id": "pharm_vitas_j1",
-          "name": "Pharmacie VITAS",
-          "address": "Située à Agoè Assiyéyé du côté ouest",
-          "phone": "+2282256343",
-          "phone_formatted": "+228 22 56 34 3",
-          "insurances": [],
           "coordinates": { "latitude": null, "longitude": null },
           "is_24h": false
         }
